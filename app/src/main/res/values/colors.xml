@@ -7,4 +7,17 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="blue_text_answer">#6BBBE1</color>
+    <color name="colorPrimaryVariant">#303F9F</color>
+    <color name="grey_disable">#AEAEAE</color>
+    <color name="colorOnSecondary">#FF000000</color>
+    <color name="white_color_on_primary">#FFFFFF</color>
+    <color name="text_question">#D1B093</color>
+    <color name="text_hint">#A3A3A3</color>
+    <color name="yellow_num_answer">#CDDC39</color>
+    <color name="app_bg">#282b2d</color>
+    <color name="darker_grey">#252525</color>
+    <color name="lighter_grey">#404040</color>
 </resources>

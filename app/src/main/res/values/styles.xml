@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="mainmenulinearlayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/app_bg</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:weightSum">10</item>
+        <item name="android:drawingCacheQuality">high</item>
+        <item name="android:alwaysDrawnWithCache">true</item>
+        <item name="android:animateLayoutChanges">true</item>
+        <item name="android:animationCache">true</item>
+        <item name="android:persistentDrawingCache">all</item>
+    </style>
+    <style name="custom_linearLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/app_bg</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+        <item name="android:drawingCacheQuality">high</item>
+        <item name="android:alwaysDrawnWithCache">true</item>
+        <item name="android:animateLayoutChanges">true</item>
+        <item name="android:animationCache">true</item>
+        <item name="android:persistentDrawingCache">all</item>
+    </style>
+    <style name="custom_mathJaxView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:layout_marginBottom">30dp</item>
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
+        <item name="android:drawingCacheQuality">high</item>
+        <item name="android:alwaysDrawnWithCache">true</item>
+        <item name="android:animateLayoutChanges">true</item>
+        <item name="android:animationCache">true</item>
+        <item name="android:persistentDrawingCache">all</item>
+    </style>
+    <style name="custom_scrollView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/app_bg</item>
+        <item name="android:drawingCacheQuality">high</item>
+        <item name="android:alwaysDrawnWithCache">true</item>
+        <item name="android:animateLayoutChanges">true</item>
+        <item name="android:animationCache">true</item>
+        <item name="android:persistentDrawingCache">all</item>
+    </style>
+    <style name="custom_button_enabled" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:background">@drawable/btn_enabled</item>
+        <item name="android:fontFamily">@font/sans_bold</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:textColor">@drawable/dynamic_text</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <!-- style for the button in the custom keyboard -->
+    <style name="custom_button_enabled_keyboard" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">60dp</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:background">@drawable/black_glass_btn</item>
+        <item name="android:fontFamily">@font/lucidacalligraphy</item>
+        <item name="android:clickable">true</item>
+        <item name="android:textColor">@color/yellow_num_answer</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="custom_button_disabled" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:background">@drawable/btn_disabled</item>
+        <item name="android:fontFamily">@font/sans_bold</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:clickable">false</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:textColor">@color/app_bg</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="custom_textView" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
+        <item name="android:layout_marginTop">25dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:fontFamily">@font/sans_bold</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="android:text">Please choose one of these as per your requirement</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/text_question</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="answer_textView" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:fontFamily">@font/sans_bold</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="android:text">Please choose one of these as per your requirement</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/blue_text_answer</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
+        <item name="android:layout_marginTop">25dp</item>
+    </style>
+
+    <style name="custom_textViewSmallNotice" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
+        <item name="android:layout_marginTop">25dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="android:text">Please choose one of these as per your requirement</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/blue_text_answer</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="custom_checkBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+        <item name="android:fontFamily">@font/sans_bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:text">acceleration &quot;a&quot;</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/yellow_num_answer</item>
+        <item name="android:textSize">15sp</item>
+        <item name="buttonTint">@color/yellow_num_answer</item>
+    </style>
+
+    <style name="custom_imageview_fixedratio" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">200dp</item>
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginTop">50dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
+        <item name="android:layout_marginBottom">30dp</item>
+    </style>
+
+    <style name="custom_edittext" parent="Widget.AppCompat.EditText">
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
+        <item name="android:layout_marginBottom">30dp</item>
+        <item name="android:ems">10</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="android:inputType">text</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="custom_edittext_mini" parent="Widget.AppCompat.EditText">
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
+        <item name="android:layout_marginBottom">30dp</item>
+        <item name="android:ems">4</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="android:inputType">text</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="custom_integer_edittext" parent="Widget.AppCompat.EditText">
+        <item name="android:singleLine">true</item>
+        <item name="android:digits">0123456789</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
+        <item name="android:layout_marginBottom">30dp</item>
+        <item name="android:ems">10</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="android:inputType">text</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="CustomActivityAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
+    </style>
+
+
+</resources>

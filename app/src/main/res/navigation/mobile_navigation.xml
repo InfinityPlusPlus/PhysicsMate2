@@ -22,4 +22,19 @@
             android:name="com.example.physicsmate.ui.slideshow.SlideshowFragment"
             android:label="@string/menu_slideshow"
             tools:layout="@layout/fragment_slideshow"/>
+
+    <!-- ______________________________________________________ -->
+
+    <fragment
+            android:id="@+id/specialRelativityFragment"
+            android:name="com.example.physicsmate.ui.home.physics.SpecialRelativity.SpecRelativityFragment"
+            android:label="Special Relativity"
+            tools:layout="@layout/fragment_blank" />
+
+    <fragment
+            android:id="@+id/gravitationFragment"
+            android:name="com.example.physicsmate.ui.home.physics.Gravitation.GravitationFragment"
+            android:label="Gravitation"
+            tools:layout="@layout/fragment_blank" />
+
 </navigation>

@@ -12,7 +12,15 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:colorBackground">@color/white</item>
+        <item name="android:buttonStyle">@style/custom_button_enabled</item>
+        <item name="android:textViewStyle">@style/custom_textView</item>
+        <item name="android:editTextStyle">@style/custom_edittext</item>
+        <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
     </style>
+
+
     <style name="Theme.PhysicsMate.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

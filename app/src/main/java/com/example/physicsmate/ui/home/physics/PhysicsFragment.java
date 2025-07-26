@@ -29,7 +29,7 @@ public class PhysicsFragment extends Fragment {
                 new Topic("Gravitation", R.id.gravitationFragment)
         );
 
-        TopicAdapter adapter = new TopicAdapter(this, topicList);
+        TopicAdapter adapter = new TopicAdapter(this, topicList, true);
         rv.setAdapter(adapter);
 
         return view;

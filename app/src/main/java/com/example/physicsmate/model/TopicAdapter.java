@@ -15,17 +15,26 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
 
     private final List<Topic> topics;
     private final Fragment parentFragment;
+    private final Boolean isMenu;
 
-    public TopicAdapter(Fragment parentFragment, List<Topic> topics) {
+    public TopicAdapter(Fragment parentFragment, List<Topic> topics, Boolean isMenu) {
         this.parentFragment = parentFragment;
         this.topics = topics;
+        this.isMenu = isMenu;
     }
 
     @NonNull
     @Override
     public TopicViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_topic, parent, false);
+        View view;
+        if (isMenu)
+        {
+            view =LayoutInflater.from(parent.getContext()).inflate(R.layout.item_topic_menu, parent, false);
+        }
+        else
+        {
+            view =LayoutInflater.from(parent.getContext()).inflate(R.layout.item_topic, parent, false);
+        }
         return new TopicViewHolder(view);
     }
 

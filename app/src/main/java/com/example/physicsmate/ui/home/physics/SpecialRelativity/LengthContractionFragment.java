@@ -15,7 +15,7 @@ import com.example.physicsmate.model.TopicAdapter;
 import java.util.Arrays;
 import java.util.List;
 
-public class SpecRelativityFragment extends Fragment {
+public class LengthContractionFragment extends Fragment {
 
     @Nullable
     @Override
@@ -27,15 +27,15 @@ public class SpecRelativityFragment extends Fragment {
         //ScrollView scrollView = view.findViewById(R.id.scrollView);
 
         List<Topic> topicList = Arrays.asList(
-                new Topic("Length Contraction", R.id.lengthContractionFragment),
-                new Topic("Time Dilation", R.id.timeDilationFragment)
+                new Topic("Find rest length", R.id.nav_home),
+                new Topic("Find velocity", R.id.nav_home),
+                new Topic("Find contracted length", R.id.nav_home)
         );
 
         TopicAdapter adapter = new TopicAdapter(this, topicList, false);
         recyclerView.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
-
-
         return view;
     }
+
 }

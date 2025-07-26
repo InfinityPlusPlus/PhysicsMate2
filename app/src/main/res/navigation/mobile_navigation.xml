@@ -29,12 +29,26 @@
             android:id="@+id/specialRelativityFragment"
             android:name="com.example.physicsmate.ui.home.physics.SpecialRelativity.SpecRelativityFragment"
             android:label="Special Relativity"
-            tools:layout="@layout/fragment_blank" />
+            tools:layout="@layout/rv_fragment_blank"/>
+
+    <fragment
+            android:id="@+id/lengthContractionFragment"
+            android:name="com.example.physicsmate.ui.home.physics.SpecialRelativity.LengthContractionFragment"
+            android:label="Length Contraction"
+            tools:layout="@layout/rv_fragment_blank" />
+
+    <fragment
+            android:id="@+id/timeDilationFragment"
+            android:name="com.example.physicsmate.ui.home.physics.SpecialRelativity.TimeDilationFragment"
+            android:label="Time Dilation"
+            tools:layout="@layout/rv_fragment_blank" />
+
+
 
     <fragment
             android:id="@+id/gravitationFragment"
             android:name="com.example.physicsmate.ui.home.physics.Gravitation.GravitationFragment"
             android:label="Gravitation"
-            tools:layout="@layout/fragment_blank" />
+            tools:layout="@layout/rv_fragment_blank" />
 
 </navigation>

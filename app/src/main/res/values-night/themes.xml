@@ -4,7 +4,7 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_200</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/app_bg</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
@@ -13,10 +13,11 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@color/app_bg</item>
-
+        <item name="android:colorBackground">@color/app_bg</item>
         <item name="android:buttonStyle">@style/custom_button_enabled</item>
         <item name="android:textViewStyle">@style/custom_textView</item>
         <item name="android:editTextStyle">@style/custom_edittext</item>
         <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
+
     </style>
 </resources>

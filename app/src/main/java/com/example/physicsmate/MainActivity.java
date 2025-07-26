@@ -1,6 +1,8 @@
 package com.example.physicsmate;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.view.Menu;
 import com.google.android.material.snackbar.Snackbar;
@@ -45,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+        new Handler(Looper.getMainLooper()).postDelayed(() -> new Thread(() -> {
+            LoggerFix.fix();
+            Custom_methods.calculateNthDerivative("3x", "x", 1);
+        }).start(), 500); // Delay by 500ms after activity shows
     }
 
     @Override

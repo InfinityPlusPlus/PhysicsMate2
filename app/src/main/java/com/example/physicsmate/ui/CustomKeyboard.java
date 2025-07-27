@@ -196,11 +196,19 @@ public class CustomKeyboard extends ConstraintLayout {
                 new KeyboardBtn("-", "buttonMinus", "-"),
                 new KeyboardBtn("*", "buttonMultiply", "×"),
                 new KeyboardBtn("/", "buttonDivide", "÷"),
+                new KeyboardBtn("=", "button_equal", "="),
                 new KeyboardBtn("^", "button_power", "^"),
                 new KeyboardBtn("sqrt()", "button_root", "√"),
-                new KeyboardBtn("=", "button_equal", "="),
                 new KeyboardBtn("||", "button_modulus", "||"),
                 new KeyboardBtn("fact()", "button_factorial", "n!"),
+                new KeyboardBtn("sin()", "button_sin", "sin"),
+                new KeyboardBtn("cos()", "button_cos", "cos"),
+                new KeyboardBtn("tan()", "button_tan", "tan"),
+                new KeyboardBtn("log10()", "button_log", "log10"),
+                new KeyboardBtn("ln()", "button_ln", "ln"),
+                new KeyboardBtn("arcsin()", "button_arcsin", "sin⁻¹"),
+                new KeyboardBtn("arccos()", "button_arccos", "cos⁻¹"),
+                new KeyboardBtn("arctan()", "button_arctan", "tan⁻¹"),
                 new KeyboardBtn("π", "button_pi", "π"),
                 new KeyboardBtn("e", "button_e", "e")
         );
@@ -215,7 +223,11 @@ public class CustomKeyboard extends ConstraintLayout {
             button.setOnClickListener(v -> insertText(keyboardBtn.stringToInsert));
 
             if (keyboardBtn.tag.equals("sqrt()") || keyboardBtn.tag.equals("fact()") ||
-                    keyboardBtn.tag.equals("||"))
+                    keyboardBtn.tag.equals("||") || keyboardBtn.tag.equals("sin()") ||
+                    keyboardBtn.tag.equals("cos()") || keyboardBtn.tag.equals("tan()") ||
+                    keyboardBtn.tag.equals("log10()") || keyboardBtn.tag.equals("ln()") ||
+                    keyboardBtn.tag.equals("arcsin()") || keyboardBtn.tag.equals("arccos()") ||
+                    keyboardBtn.tag.equals("arctan()"))
             {
                 button.setOnClickListener(v -> targetEditText.setSelection(targetEditText.getSelectionStart() - 1));
             }

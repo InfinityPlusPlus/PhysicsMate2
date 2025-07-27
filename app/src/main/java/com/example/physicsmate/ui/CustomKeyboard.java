@@ -43,6 +43,11 @@ public class CustomKeyboard extends ConstraintLayout {
     RecyclerView rv_keyboard_content;
     LinearLayout ll_tab_bar;
 
+    Button tab123;
+    Button tabABC;
+    Button tabGreek;
+    Button tabConst;
+
     public CustomKeyboard(Context context, AttributeSet attrs)
     {
         super(context, attrs);
@@ -64,10 +69,10 @@ public class CustomKeyboard extends ConstraintLayout {
             System.out.println("H/2: " + keyboard_layout.getLayoutParams().height);
         }
 
-        Button tab123 = findViewById(R.id.tab_numbers);
-        Button tabABC = findViewById(R.id.tab_alphabets);
-        Button tabGreek = findViewById(R.id.tab_greek);
-        Button tabConst = findViewById(R.id.tab_constants);
+        tab123 = findViewById(R.id.tab_numbers);
+        tabABC = findViewById(R.id.tab_alphabets);
+        tabGreek = findViewById(R.id.tab_greek);
+        tabConst = findViewById(R.id.tab_constants);
         Button backspace = findViewById(R.id.backspace);
 //        Button num = findViewById(R.id.num);
 //        Button alphabets = findViewById(R.id.alphabets);
@@ -284,6 +289,33 @@ public class CustomKeyboard extends ConstraintLayout {
 
         }
 
+        final int numStart   = findPositionByTag(keyboardBtns, "button1");
+        final int abcStart   = findPositionByTag(keyboardBtns, "buttonA");
+        final int greekStart = findPositionByTag(keyboardBtns, "buttonAlpha");
+        final int constStart = findPositionByTag(keyboardBtns, "buttonPi");
+
+        // 4) wire up your tab buttons to scroll to those positions
+        tab123.setOnClickListener(v ->
+                rv_keyboard_content.post(() ->
+                        rv_keyboard_content.smoothScrollToPosition(numStart)
+                )
+        );
+        tabABC.setOnClickListener(v ->
+                rv_keyboard_content.post(() ->
+                        rv_keyboard_content.smoothScrollToPosition(abcStart)
+                )
+        );
+        tabGreek.setOnClickListener(v ->
+                rv_keyboard_content.post(() ->
+                        rv_keyboard_content.smoothScrollToPosition(greekStart)
+                )
+        );
+        tabConst.setOnClickListener(v ->
+                rv_keyboard_content.post(() ->
+                        rv_keyboard_content.smoothScrollToPosition(constStart)
+                )
+        );
+
     }
 
     public void setupOperatorBar()
@@ -330,6 +362,17 @@ public class CustomKeyboard extends ConstraintLayout {
                 button.setOnClickListener(v -> targetEditText.setSelection(targetEditText.getSelectionStart() - 1));
             }
         }
+    }
+
+    // helper method to find the first index whose tag matches
+    private int findPositionByTag(List<KeyboardBtn> list, String tag) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).tag.equals(tag)) {
+                return i;
+            }
+        }
+        // fallback to 0 if not found
+        return 0;
     }
 
 
@@ -455,6 +498,14 @@ public class CustomKeyboard extends ConstraintLayout {
 //    }
 
 
+    public static void insertText(CharSequence text) {
+        if (targetEditText != null) {
+            int cursorPosition = targetEditText.getSelectionStart();
+            Editable editable = targetEditText.getText();
+            editable.insert(cursorPosition, text);
+        }
+    }
+
     public void setTargetEditText(EditText editText) {
         targetEditText = editText;
     }
@@ -480,12 +531,5 @@ public class CustomKeyboard extends ConstraintLayout {
         setVisibility(View.GONE);
     }
 
-    public static void insertText(CharSequence text) {
-        if (targetEditText != null) {
-            int cursorPosition = targetEditText.getSelectionStart();
-            Editable editable = targetEditText.getText();
-            editable.insert(cursorPosition, text);
-        }
-    }
 
 }

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        tools:context=".ui.CustomKeyboard"
+        android:id="@+id/keyboard_layout"
+>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_operator_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/ll_tab_bar"/>
+
+    <LinearLayout
+            android:id="@+id/ll_tab_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+    >
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/tab_numbers"
+                android:textColor="@drawable/dynamic_text"
+                android:background="@drawable/btn_enabled"
+                style="@style/custom_button_enabled_keyboard"
+                android:text="123"
+                android:layout_width="80dp"/>
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/tab_alphabets"
+                android:textColor="@drawable/dynamic_text"
+                android:background="@drawable/btn_enabled"
+                style="@style/custom_button_enabled_keyboard" android:text="abc"
+                android:layout_width="80dp"/>
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/tab_greek"
+                android:textColor="@drawable/dynamic_text"
+                android:background="@drawable/btn_enabled"
+                style="@style/custom_button_enabled_keyboard" android:text="αβγ"
+                android:layout_width="80dp"/>
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/tab_constants"
+                android:textColor="@drawable/dynamic_text"
+                android:background="@drawable/btn_enabled"
+                style="@style/custom_button_enabled_keyboard"
+                android:text="const"
+                android:layout_width="80dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/backspace"
+                android:textColor="@drawable/dynamic_text"
+                android:background="@drawable/btn_enabled"
+                android:minHeight="48dp"
+                style="@style/custom_button_enabled_keyboard" android:text="⌫"
+                android:layout_width="80dp"/>
+
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ll_tab_bar"
+            app:layout_constraintTop_toBottomOf="@+id/rv_operator_bar"
+            android:id="@+id/rv_keyboard_content"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

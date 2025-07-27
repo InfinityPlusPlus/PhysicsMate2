@@ -2,12 +2,14 @@ package com.example.physicsmate;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.ScrollingMovementMethod;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebSettings;
@@ -50,7 +52,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
 import static de.lab4inf.math.util.Accuracy.round;
 import static org.matheclipse.core.expression.F.eval;
 
@@ -421,7 +422,7 @@ public class Custom_methods {
     }
 
     // Convert polar coordinates to Cartesian coordinates
-    private static double[] polarToCartesian(String[] polarComponents) {
+    public static double[] polarToCartesian(String[] polarComponents) {
         int n = polarComponents.length;
         double[] cartesian = new double[n];
 
@@ -442,7 +443,7 @@ public class Custom_methods {
     }
 
     // Convert Cartesian coordinates to polar coordinates
-    private static double[] cartesianToPolar(double[] cartesian) {
+    public static double[] cartesianToPolar(double[] cartesian) {
         int n = cartesian.length;
         double[] polar = new double[n];
 
@@ -1356,6 +1357,31 @@ public class Custom_methods {
         }
 
         return StringError;
+    }
+
+    public static float convertPixelsToDp(float px) {
+        DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+        float dp = px / (metrics.densityDpi / 160f);
+        return Math.round(dp);
+    }
+
+    public static float convertDpToPixel(float dp) {
+        DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+        float px = dp * (metrics.densityDpi / 160f);
+        return Math.round(px);
+    }
+//http://stackoverflow.com/questions/4605527/converting-pixels-to-dp
+//The above method results accurate method compared to below methods
+//http://stackoverflow.com/questions/8309354/formula-px-to-dp-dp-to-px-android
+
+
+    public static int convertDpToPx(int dp) {
+        return Math.round(dp * (Resources.getSystem().getDisplayMetrics().xdpi / DisplayMetrics.DENSITY_DEFAULT));
+
+    }
+
+    public static int convertPxToDp(int px) {
+        return Math.round(px / (Resources.getSystem().getDisplayMetrics().xdpi / DisplayMetrics.DENSITY_DEFAULT));
     }
 
     public static String getTex(String function, float fontSize, MTMathView mathView) {

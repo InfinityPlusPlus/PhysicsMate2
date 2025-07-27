@@ -12,8 +12,6 @@ import com.example.physicsmate.R;
 import java.util.List;
 
 import static com.example.physicsmate.Custom_methods.convertDpToPx;
-import static com.example.physicsmate.ui.CustomKeyboard.insertText;
-import static com.example.physicsmate.ui.CustomKeyboard.targetEditText;
 
 public class KeyboardBtnAdapter extends RecyclerView.Adapter<KeyboardBtnAdapter.KeyboardBtnHolder> {
 
@@ -37,7 +35,7 @@ public class KeyboardBtnAdapter extends RecyclerView.Adapter<KeyboardBtnAdapter.
     @Override
     public void onBindViewHolder(@NonNull KeyboardBtnHolder holder, int position) {
         KeyboardBtn keyboardBtn = keyboardBtns.get(position);
-        holder.button.setText(keyboardBtn.label);
+        holder.button.setText(keyboardBtn.displayText);
         if (isYellow) {
             Paris.styleBuilder(holder.button).add(R.style.custom_button_enabled).apply();
             holder.button.setWidth(convertDpToPx(80));
@@ -46,12 +44,17 @@ public class KeyboardBtnAdapter extends RecyclerView.Adapter<KeyboardBtnAdapter.
         {
             Paris.styleBuilder(holder.button).add(R.style.custom_button_enabled_keyboard).apply();
         }
-        holder.button.setOnClickListener(view -> insertText(keyboardBtn.stringToInsert));
+        holder.button.setTag(keyboardBtn.tag);
     }
 
     @Override
     public int getItemCount() {
         return keyboardBtns.size();
+    }
+
+    public KeyboardBtn getKeyboardBtn(int i)
+    {
+        return keyboardBtns.get(i);
     }
 
     public static class KeyboardBtnHolder extends RecyclerView.ViewHolder {

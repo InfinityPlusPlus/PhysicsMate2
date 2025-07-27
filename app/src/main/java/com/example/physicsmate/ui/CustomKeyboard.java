@@ -191,18 +191,18 @@ public class CustomKeyboard extends ConstraintLayout {
 
     public void setupOperatorBar() {
         List<KeyboardBtn> keyboardBtns = Arrays.asList(
-                new KeyboardBtn(".", "buttonDecimal"),
-                new KeyboardBtn("+", "buttonPlus"),
-                new KeyboardBtn("-", "buttonMinus"),
-                new KeyboardBtn("*", "buttonMultiply"),
-                new KeyboardBtn("/", "buttonDivide"),
-                new KeyboardBtn("^", "button_power"),
-                new KeyboardBtn("sqrt()", "button_root"),
-                new KeyboardBtn("=", "button_equal"),
-                new KeyboardBtn("||", "button_modulus"),
-                new KeyboardBtn("!", "button_factorial"),
-                new KeyboardBtn("π", "button_pi"),
-                new KeyboardBtn("e", "button_e")
+                new KeyboardBtn(".", "buttonDecimal", "."),
+                new KeyboardBtn("+", "buttonPlus", "+"),
+                new KeyboardBtn("-", "buttonMinus", "-"),
+                new KeyboardBtn("*", "buttonMultiply", "×"),
+                new KeyboardBtn("/", "buttonDivide", "÷"),
+                new KeyboardBtn("^", "button_power", "^"),
+                new KeyboardBtn("sqrt()", "button_root", "√"),
+                new KeyboardBtn("=", "button_equal", "="),
+                new KeyboardBtn("||", "button_modulus", "||"),
+                new KeyboardBtn("fact()", "button_factorial", "n!"),
+                new KeyboardBtn("π", "button_pi", "π"),
+                new KeyboardBtn("e", "button_e", "e")
         );
 
         KeyboardBtnAdapter keyboardBtnAdapter = new KeyboardBtnAdapter(keyboardBtns, false);
@@ -211,7 +211,14 @@ public class CustomKeyboard extends ConstraintLayout {
 
         for (int i = 0; i < keyboardBtnAdapter.getItemCount(); i++) {
             Button button = (Button) rv_operator_bar.getChildAt(i);
-            button.setOnClickListener(v -> insertText(button.getTag().toString()));
+            KeyboardBtn keyboardBtn = keyboardBtnAdapter.getKeyboardBtn(i);
+            button.setOnClickListener(v -> insertText(keyboardBtn.stringToInsert));
+
+            if (keyboardBtn.tag.equals("sqrt()") || keyboardBtn.tag.equals("fact()") ||
+                    keyboardBtn.tag.equals("||"))
+            {
+                button.setOnClickListener(v -> targetEditText.setSelection(targetEditText.getSelectionStart() - 1));
+            }
         }
     }
 

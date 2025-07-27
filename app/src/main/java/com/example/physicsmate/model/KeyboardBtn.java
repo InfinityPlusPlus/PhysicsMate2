@@ -2,10 +2,13 @@ package com.example.physicsmate.model;
 
 public class KeyboardBtn {
     public String stringToInsert;
-    public String label;  // ID from nav_graph for navigation
+    public String tag;  // work as id
+    public String displayText;
 
-    public KeyboardBtn(String stringToInsert, String label) {
+    public KeyboardBtn(String stringToInsert, String tag, String displayText) {
         this.stringToInsert = stringToInsert;
-        this.label = label;
+        this.tag = tag;
+        this.displayText = displayText;
+
     }
 }

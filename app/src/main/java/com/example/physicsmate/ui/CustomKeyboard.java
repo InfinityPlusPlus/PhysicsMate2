@@ -2,24 +2,20 @@ package com.example.physicsmate.ui;
 
 import android.content.Context;
 import android.text.Editable;
-import android.text.Html;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.physicsmate.R;
 import com.example.physicsmate.model.KeyboardBtn;
 import com.example.physicsmate.model.KeyboardBtnAdapter;
-import com.google.android.flexbox.FlexboxLayout;
+import com.google.android.flexbox.*;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -47,7 +43,8 @@ public class CustomKeyboard extends ConstraintLayout {
     RecyclerView rv_keyboard_content;
     LinearLayout ll_tab_bar;
 
-    public CustomKeyboard(Context context, AttributeSet attrs) {
+    public CustomKeyboard(Context context, AttributeSet attrs)
+    {
         super(context, attrs);
         //setOrientation(VERTICAL);
 
@@ -59,7 +56,6 @@ public class CustomKeyboard extends ConstraintLayout {
         keyboard_layout = findViewById(R.id.keyboard_layout);
         rv_keyboard_content = findViewById(R.id.rv_keyboard_content);
         ll_tab_bar = findViewById(R.id.ll_tab_bar);
-        //setupOperatorBar();
 
         //get the current orientation of the device
         int orientation = getResources().getConfiguration().orientation;
@@ -118,31 +114,229 @@ public class CustomKeyboard extends ConstraintLayout {
 
         rv_operator_bar = findViewById(R.id.rv_operator_bar);
         rv_keyboard_content = findViewById(R.id.rv_keyboard_content);
-        //get the number of buttons in keyboard_content
-        int numberOfButtons = rv_keyboard_content.getChildCount();
 
-        int i;
-
-//        for (i = 0; i < numberOfButtons; i++) {
-//            Button button = (Button) rv_keyboard_content.getChildAt(i);
-//            if (button.getId() != R.id.constants) {
-//                button.setOnClickListener(v -> insertText(button.getText().toString()));
-//            } else {
-//                break;
-//            }
-//        }
-//
-//        for (; i < numberOfButtons; i++) {
-//            Button button = (Button) rv_keyboard_content.getChildAt(i);
-//            button.setOnClickListener(v -> insertTextConst(button.getText().toString()));
-//        }
+        setupOperatorBar();
+        setupKeyboardContent();
 
     }
 
-    public void insertTextConst(String string) {
+    public void setupKeyboardContent() {
+        List<KeyboardBtn> keyboardBtns = Arrays.asList(
+                new KeyboardBtn("1", "button1", "1"),
+                new KeyboardBtn("2", "button2", "2"),
+                new KeyboardBtn("3", "button3", "3"),
+                new KeyboardBtn("4", "button4", "4"),
+                new KeyboardBtn("5", "button5", "5"),
+                new KeyboardBtn("6", "button6", "6"),
+                new KeyboardBtn("7", "button7", "7"),
+                new KeyboardBtn("8", "button8", "8"),
+                new KeyboardBtn("9", "button9", "9"),
+                new KeyboardBtn("0", "button0", "0"),
+                new KeyboardBtn("a", "buttonA", "a"),
+                new KeyboardBtn("b", "buttonB", "b"),
+                new KeyboardBtn("c", "buttonC", "c"),
+                new KeyboardBtn("d", "buttonD", "d"),
+                new KeyboardBtn("e", "buttonE", "e"),
+                new KeyboardBtn("f", "buttonF", "f"),
+                new KeyboardBtn("g", "buttonG", "g"),
+                new KeyboardBtn("h", "buttonH", "h"),
+                new KeyboardBtn("i", "buttonI", "i"),
+                new KeyboardBtn("j", "buttonJ", "j"),
+                new KeyboardBtn("k", "buttonK", "k"),
+                new KeyboardBtn("l", "buttonL", "l"),
+                new KeyboardBtn("m", "buttonM", "m"),
+                new KeyboardBtn("n", "buttonN", "n"),
+                new KeyboardBtn("o", "buttonO", "o"),
+                new KeyboardBtn("p", "buttonP", "p"),
+                new KeyboardBtn("q", "buttonQ", "q"),
+                new KeyboardBtn("r", "buttonR", "r"),
+                new KeyboardBtn("s", "buttonS", "s"),
+                new KeyboardBtn("t", "buttonT", "t"),
+                new KeyboardBtn("u", "buttonU", "u"),
+                new KeyboardBtn("v", "buttonV", "v"),
+                new KeyboardBtn("w", "buttonW", "w"),
+                new KeyboardBtn("x", "buttonX", "x"),
+                new KeyboardBtn("y", "buttonY", "y"),
+                new KeyboardBtn("z", "buttonZ", "z"),
+                new KeyboardBtn("α", "buttonAlpha", "α"),
+                new KeyboardBtn("β", "buttonBeta", "β"),
+                new KeyboardBtn("γ", "buttonGamma", "γ"),
+                new KeyboardBtn("δ", "buttonDelta", "δ"),
+                new KeyboardBtn("ε", "buttonEpsilon", "ε"),
+                new KeyboardBtn("ζ", "buttonZeta", "ζ"),
+                new KeyboardBtn("η", "buttonEta", "η"),
+                new KeyboardBtn("θ", "buttonTheta", "θ"),
+                new KeyboardBtn("ι", "buttonIota", "ι"),
+                new KeyboardBtn("κ", "buttonKappa", "κ"),
+                new KeyboardBtn("λ", "buttonLambda", "λ"),
+                new KeyboardBtn("μ", "buttonMu", "μ"),
+                new KeyboardBtn("ν", "buttonNu", "ν"),
+                new KeyboardBtn("ξ", "buttonXi", "ξ"),
+                new KeyboardBtn("ο", "buttonOmicron", "ο"),
+                new KeyboardBtn("π", "buttonPi", "π"),
+                new KeyboardBtn("ρ", "buttonRho", "ρ"),
+                new KeyboardBtn("σ", "buttonSigma", "σ"),
+                new KeyboardBtn("τ", "buttonTau", "τ"),
+                new KeyboardBtn("υ", "buttonUpsilon", "υ"),
+                new KeyboardBtn("φ", "buttonPhi", "φ"),
+                new KeyboardBtn("χ", "buttonChi", "χ"),
+                new KeyboardBtn("ψ", "buttonPsi", "ψ"),
+                new KeyboardBtn("ω", "buttonOmega", "ω"),
+                new KeyboardBtn("△", "buttonTriangle", "△"),
+                new KeyboardBtn("□", "buttonSquare", "□"),
+                new KeyboardBtn("▽", "buttonTriangleDown", "▽"),
+                new KeyboardBtn("▷", "buttonTriangleRight", "▷"),
+                new KeyboardBtn("◁", "buttonTriangleLeft", "◁"),
+                new KeyboardBtn("⊥", "buttonPerpendicular", "⊥"),
+                new KeyboardBtn("⊙", "buttonCircleDot", "⊙"),
+                new KeyboardBtn("⊗", "buttonCircleCross", "⊗"),
+                new KeyboardBtn("•", "buttonDot", "•"),
+                new KeyboardBtn(":", "buttonColon", ":"),
+                new KeyboardBtn(";", "buttonSemicolon", ";"),
+                new KeyboardBtn("{", "buttonBraceLeft", "{"),
+                new KeyboardBtn("}", "buttonBraceRight", "}"),
+                new KeyboardBtn("[", "buttonBracketLeft", "["),
+                new KeyboardBtn("]", "buttonBracketRight", "]"),
+                new KeyboardBtn("×", "buttonCross", "×"),
+                new KeyboardBtn("÷", "buttonDivide", "÷"),
+                new KeyboardBtn("ʃ", "buttonIntegral", "ʃ"),
+                new KeyboardBtn("∮", "buttonLineIntegral", "∮"),
+                new KeyboardBtn("∯", "buttonSurfaceIntegral", "∯"),
+                new KeyboardBtn("∰", "buttonVolumeIntegral", "∰"),
+                new KeyboardBtn("∑", "buttonSum", "∑"),
+                new KeyboardBtn("∏", "buttonProduct", "∏"),
+
+                new KeyboardBtn("π", "buttonPi", "π"),
+                new KeyboardBtn("e", "buttonE", "e"),
+                new KeyboardBtn("h", "buttonH", "h"),
+                new KeyboardBtn("c", "buttonC", "c"),
+                new KeyboardBtn("G", "buttonG", "G"),
+                new KeyboardBtn("μ0", "buttonMu0", "μ0"),
+                new KeyboardBtn("ε0", "buttonEpsilon0", "ε0"),
+                new KeyboardBtn("me", "buttonMe", "me"),
+                new KeyboardBtn("mp", "buttonMp", "mp"),
+                new KeyboardBtn("mn", "buttonMn", "mn"),
+                new KeyboardBtn("kB", "buttonKb", "kB"),
+                new KeyboardBtn("Na", "buttonNa", "Na"),
+                new KeyboardBtn("σ", "buttonSigma", "σ"),
+                new KeyboardBtn("R", "buttonR", "R"),
+                new KeyboardBtn("k", "buttonK", "k")
+        );
+
+        FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(getContext());
+        layoutManager.setFlexDirection(FlexDirection.ROW);
+        layoutManager.setJustifyContent(JustifyContent.SPACE_AROUND);
+        layoutManager.setFlexWrap(FlexWrap.WRAP);
+        rv_keyboard_content.setLayoutManager(layoutManager);
+
+        KeyboardBtnAdapter keyboardBtnAdapter = new KeyboardBtnAdapter(keyboardBtns, false);
+        rv_keyboard_content.setAdapter(keyboardBtnAdapter);
+
+        for (int i = 0; i < keyboardBtnAdapter.getItemCount(); i++) {
+            Button button = (Button) rv_operator_bar.getChildAt(i);
+            KeyboardBtn keyboardBtn = keyboardBtnAdapter.getKeyboardBtn(i);
+            button.setOnClickListener(v -> insertText(keyboardBtn.stringToInsert));
+            String tag = keyboardBtn.tag;
+            switch (tag) {
+                case "buttonPi":
+                    button.setOnClickListener(v -> insertTextConst(pi));
+                    break;
+                case "buttonE":
+                    button.setOnClickListener(v -> insertTextConst(e));
+                    break;
+                case "buttonH":
+                    button.setOnClickListener(v -> insertTextConst(h));
+                    break;
+                case "buttonC":
+                    button.setOnClickListener(v -> insertTextConst(c));
+                    break;
+                case "buttonG":
+                    button.setOnClickListener(v -> insertTextConst(G));
+                    break;
+                case "buttonMu0":
+                    button.setOnClickListener(v -> insertTextConst(mu_0));
+                    break;
+                case "buttonEpsilon0":
+                    button.setOnClickListener(v -> insertTextConst(eps_0));
+                    break;
+                case "buttonMe":
+                    button.setOnClickListener(v -> insertTextConst(m_e));
+                    break;
+                case "buttonMp":
+                    button.setOnClickListener(v -> insertTextConst(m_p));
+                    break;
+                case "buttonMn":
+                    button.setOnClickListener(v -> insertTextConst(m_n));
+                    break;
+                case "buttonKb":
+                    button.setOnClickListener(v -> insertTextConst(k_B));
+                    break;
+                case "buttonNa":
+                    button.setOnClickListener(v -> insertTextConst(Na));
+                    break;
+                case "buttonSigma":
+                    button.setOnClickListener(v -> insertTextConst(sigma));
+                    break;
+                case "buttonR":
+                    button.setOnClickListener(v -> insertTextConst(gas_constant));
+                    break;
+            }
+
+        }
+
+    }
+
+    public void setupOperatorBar()
+    {
+        List<KeyboardBtn> keyboardBtns = Arrays.asList(
+                new KeyboardBtn(".", "buttonDecimal", "."),
+                new KeyboardBtn("+", "buttonPlus", "+"),
+                new KeyboardBtn("-", "buttonMinus", "-"),
+                new KeyboardBtn("*", "buttonMultiply", "×"),
+                new KeyboardBtn("/", "buttonDivide", "÷"),
+                new KeyboardBtn("=", "button_equal", "="),
+                new KeyboardBtn("^", "button_power", "^"),
+                new KeyboardBtn("sqrt()", "button_root", "√"),
+                new KeyboardBtn("||", "button_modulus", "||"),
+                new KeyboardBtn("fact()", "button_factorial", "n!"),
+                new KeyboardBtn("sin()", "button_sin", "sin"),
+                new KeyboardBtn("cos()", "button_cos", "cos"),
+                new KeyboardBtn("tan()", "button_tan", "tan"),
+                new KeyboardBtn("log10()", "button_log", "log10"),
+                new KeyboardBtn("ln()", "button_ln", "ln"),
+                new KeyboardBtn("arcsin()", "button_arcsin", "sin⁻¹"),
+                new KeyboardBtn("arccos()", "button_arccos", "cos⁻¹"),
+                new KeyboardBtn("arctan()", "button_arctan", "tan⁻¹"),
+                new KeyboardBtn("π", "button_pi", "π"),
+                new KeyboardBtn("e", "button_e", "e")
+        );
+
+        KeyboardBtnAdapter keyboardBtnAdapter = new KeyboardBtnAdapter(keyboardBtns, false);
+        rv_operator_bar.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        rv_operator_bar.setAdapter(keyboardBtnAdapter);
+
+        for (int i = 0; i < keyboardBtnAdapter.getItemCount(); i++) {
+            Button button = (Button) rv_operator_bar.getChildAt(i);
+            KeyboardBtn keyboardBtn = keyboardBtnAdapter.getKeyboardBtn(i);
+            button.setOnClickListener(v -> insertText(keyboardBtn.stringToInsert));
+
+            if (keyboardBtn.tag.equals("sqrt()") || keyboardBtn.tag.equals("fact()") ||
+                    keyboardBtn.tag.equals("||") || keyboardBtn.tag.equals("sin()") ||
+                    keyboardBtn.tag.equals("cos()") || keyboardBtn.tag.equals("tan()") ||
+                    keyboardBtn.tag.equals("log10()") || keyboardBtn.tag.equals("ln()") ||
+                    keyboardBtn.tag.equals("arcsin()") || keyboardBtn.tag.equals("arccos()") ||
+                    keyboardBtn.tag.equals("arctan()"))
+            {
+                button.setOnClickListener(v -> targetEditText.setSelection(targetEditText.getSelectionStart() - 1));
+            }
+        }
+    }
+
+
+    public void insertTextConst(double val) {
         int cursorPosition = targetEditText.getSelectionStart();
         Editable editable = targetEditText.getText();
-
+        String string = String.valueOf(val);
         switch (string) {
             case "π":
                 editable.insert(cursorPosition, String.valueOf(pi));
@@ -188,52 +382,6 @@ public class CustomKeyboard extends ConstraintLayout {
                 break;
         }
     }
-
-    public void setupOperatorBar() {
-        List<KeyboardBtn> keyboardBtns = Arrays.asList(
-                new KeyboardBtn(".", "buttonDecimal", "."),
-                new KeyboardBtn("+", "buttonPlus", "+"),
-                new KeyboardBtn("-", "buttonMinus", "-"),
-                new KeyboardBtn("*", "buttonMultiply", "×"),
-                new KeyboardBtn("/", "buttonDivide", "÷"),
-                new KeyboardBtn("=", "button_equal", "="),
-                new KeyboardBtn("^", "button_power", "^"),
-                new KeyboardBtn("sqrt()", "button_root", "√"),
-                new KeyboardBtn("||", "button_modulus", "||"),
-                new KeyboardBtn("fact()", "button_factorial", "n!"),
-                new KeyboardBtn("sin()", "button_sin", "sin"),
-                new KeyboardBtn("cos()", "button_cos", "cos"),
-                new KeyboardBtn("tan()", "button_tan", "tan"),
-                new KeyboardBtn("log10()", "button_log", "log10"),
-                new KeyboardBtn("ln()", "button_ln", "ln"),
-                new KeyboardBtn("arcsin()", "button_arcsin", "sin⁻¹"),
-                new KeyboardBtn("arccos()", "button_arccos", "cos⁻¹"),
-                new KeyboardBtn("arctan()", "button_arctan", "tan⁻¹"),
-                new KeyboardBtn("π", "button_pi", "π"),
-                new KeyboardBtn("e", "button_e", "e")
-        );
-
-        KeyboardBtnAdapter keyboardBtnAdapter = new KeyboardBtnAdapter(keyboardBtns, false);
-        rv_operator_bar.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        rv_operator_bar.setAdapter(keyboardBtnAdapter);
-
-        for (int i = 0; i < keyboardBtnAdapter.getItemCount(); i++) {
-            Button button = (Button) rv_operator_bar.getChildAt(i);
-            KeyboardBtn keyboardBtn = keyboardBtnAdapter.getKeyboardBtn(i);
-            button.setOnClickListener(v -> insertText(keyboardBtn.stringToInsert));
-
-            if (keyboardBtn.tag.equals("sqrt()") || keyboardBtn.tag.equals("fact()") ||
-                    keyboardBtn.tag.equals("||") || keyboardBtn.tag.equals("sin()") ||
-                    keyboardBtn.tag.equals("cos()") || keyboardBtn.tag.equals("tan()") ||
-                    keyboardBtn.tag.equals("log10()") || keyboardBtn.tag.equals("ln()") ||
-                    keyboardBtn.tag.equals("arcsin()") || keyboardBtn.tag.equals("arccos()") ||
-                    keyboardBtn.tag.equals("arctan()"))
-            {
-                button.setOnClickListener(v -> targetEditText.setSelection(targetEditText.getSelectionStart() - 1));
-            }
-        }
-    }
-
 //    public void setupOperatorBar() {
 //        int[] operatorIds = new int[]{R.id.buttonDecimal, R.id.buttonPlus, R.id.buttonMinus, R.id.buttonMultiply,
 //                R.id.buttonDivide, R.id.button_power, R.id.button_root, R.id.button_equal, R.id.button_modulus,

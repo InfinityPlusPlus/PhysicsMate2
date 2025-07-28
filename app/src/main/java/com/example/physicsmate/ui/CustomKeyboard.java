@@ -11,15 +11,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import com.example.physicsmate.R;
-import com.example.physicsmate.model.KeyboardBtn;
-import com.example.physicsmate.model.KeyboardBtnAdapter;
 import com.google.android.flexbox.*;
-
-import java.util.Arrays;
-import java.util.List;
 
 
 public class CustomKeyboard extends LinearLayout {

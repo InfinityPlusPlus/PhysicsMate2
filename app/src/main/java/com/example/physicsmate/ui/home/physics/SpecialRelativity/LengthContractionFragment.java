@@ -147,7 +147,7 @@ public class LengthContractionFragment extends Fragment {
         setLinkedScrollView(sv);
 
         btnNext.setOnClickListener(view2 -> {
-//            customKeyboard.hideKeyboard();
+            customKeyboard.hideKeyboard();
             String s = checkBoxes.stream().filter(CB -> !CB.isChecked()).findFirst().map(CB -> CB.getText().toString()).orElse("Contracted Length");
 
             //find which checkbox is not checked
@@ -177,7 +177,7 @@ public class LengthContractionFragment extends Fragment {
 
             btnCalc.setOnClickListener(view1 -> {
 
-//                customKeyboard.hideKeyboard();
+                customKeyboard.hideKeyboard();
                 switch (s) {
                     case "Proper Length":
                         double contracted_length = evalf(et1.getText().toString());

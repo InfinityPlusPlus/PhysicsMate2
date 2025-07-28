@@ -20,8 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import com.agog.mathdisplay.MTMathView;
 import com.airbnb.paris.Paris;
-//import com.example.physicsmate.ui.main.CustomKeyboard;
-//import com.example.physicsmate.ui.CustomKeyboard;
+import com.example.physicsmate.ui.CustomKeyboard;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -643,196 +642,196 @@ public class Custom_methods {
         return dividend - divisor * Math.floor(dividend / divisor);
     }
 
-//    public static void setupEditTextChangeListener(View[] viewsToDisappear, Button btnCalc, CustomKeyboard custom_keyboard, Iterable<EditText> editTexts) {
-//
-//        // Check if any of the EditTexts are empty
-//        boolean anyEditTextEmpty = false;
-//        for (EditText editText : editTexts) {
-//            if (editText.getText().toString().isEmpty()) {
-//                anyEditTextEmpty = true;
-//                break;
-//            }
-//        }
-//
-//        hideKeyboardOnClick(btnCalc, custom_keyboard.getContext());
-//        // Enable or disable the btnCalc based on EditTexts' contents
-//        btnCalc.setEnabled(!anyEditTextEmpty);
-//
-//        if (anyEditTextEmpty) {
-//            Paris.styleBuilder(btnCalc).add(R.style.custom_button_disabled).apply();
-//        } else {
-//            //use paris style builder to set the background
-//            Paris.styleBuilder(btnCalc).add(R.style.custom_button_enabled).apply();
-//        }
-//
-//        for (EditText editText : editTexts) {
-//            editText.addTextChangedListener(new TextWatcher() {
-//                @Override
-//                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//                }
-//
-//                @Override
-//                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//                }
-//
-//                @Override
-//                public void afterTextChanged(Editable editable) {
-//                    for (View view : viewsToDisappear) {
-//                        view.setVisibility(View.GONE);
-//                    }
-//
-//                    // Check if any of the EditTexts are empty
-//                    boolean anyEditTextEmpty = false;
-//                    for (EditText editText : editTexts) {
-//                        if (editText.getText().toString().isEmpty()) {
-//                            anyEditTextEmpty = true;
-//                            break;
-//                        }
-//                    }
-//
-//                    //if all the edittexts have some text, activate the button
-//                    if (!anyEditTextEmpty) {
-//                        btnCalc.setEnabled(true);
-//                        Paris.styleBuilder(btnCalc).add(R.style.custom_button_enabled).apply();
-//                    } else {
-//                        btnCalc.setEnabled(false);
-//                        Paris.styleBuilder(btnCalc).add(R.style.custom_button_disabled).apply();
-//                    }
-//
-//                    // Enable or disable the btnCalc based on EditTexts' contents
-//                    btnCalc.setEnabled(!anyEditTextEmpty);
-//
-//                    if (anyEditTextEmpty) {
-//                        Paris.styleBuilder(btnCalc).add(R.style.custom_button_disabled).apply();
-//                    } else {
-//                        //use paris style builder to set the background
-//                        Paris.styleBuilder(btnCalc).add(R.style.custom_button_enabled).apply();
-//                    }
-//
-//                }
-//            });
-//        }
-//    }
-//
-//    public static void setupEditTextChangeListener(View[] viewsToDisappear, Button btnCalc, CustomKeyboard custom_keyboard, EditText... editTexts) {
-//
-//        // Check if any of the EditTexts are empty
-//        boolean anyEditTextEmpty = false;
-//        for (EditText editText : editTexts) {
-//            if (editText.getText().toString().isEmpty()) {
-//                anyEditTextEmpty = true;
-//                break;
-//            }
-//        }
-//
-//        hideKeyboardOnClick(btnCalc, custom_keyboard.getContext());
-//        // Enable or disable the btnCalc based on EditTexts' contents
-//        btnCalc.setEnabled(!anyEditTextEmpty);
-//
-//        if (anyEditTextEmpty) {
-//            Paris.styleBuilder(btnCalc).add(R.style.custom_button_disabled).apply();
-//        } else {
-//            //use paris style builder to set the background
-//            Paris.styleBuilder(btnCalc).add(R.style.custom_button_enabled).apply();
-//        }
-//
-//        for (EditText editText : editTexts) {
-//            editText.addTextChangedListener(new TextWatcher() {
-//                @Override
-//                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//                }
-//
-//                @Override
-//                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//                }
-//
-//                @Override
-//                public void afterTextChanged(Editable editable) {
-//                    for (View view : viewsToDisappear) {
-//                        view.setVisibility(View.GONE);
-//                    }
-//
-//                    // Check if any of the EditTexts are empty
-//                    boolean anyEditTextEmpty = false;
-//                    for (EditText editText : editTexts) {
-//                        if (editText.getText().toString().isEmpty()) {
-//                            anyEditTextEmpty = true;
-//                            break;
-//                        }
-//                    }
-//
-//                    //if all the edittexts have some text, activate the button
-//                    if (!anyEditTextEmpty) {
-//                        btnCalc.setEnabled(true);
-//                        Paris.styleBuilder(btnCalc).add(R.style.custom_button_enabled).apply();
-//                    } else {
-//                        btnCalc.setEnabled(false);
-//                        Paris.styleBuilder(btnCalc).add(R.style.custom_button_disabled).apply();
-//                    }
-//
-//                    // Enable or disable the btnCalc based on EditTexts' contents
-//                    btnCalc.setEnabled(!anyEditTextEmpty);
-//
-//                    if (anyEditTextEmpty) {
-//                        Paris.styleBuilder(btnCalc).add(R.style.custom_button_disabled).apply();
-//                    } else {
-//                        //use paris style builder to set the background
-//                        Paris.styleBuilder(btnCalc).add(R.style.custom_button_enabled).apply();
-//                    }
-//
-//                }
-//            });
-//        }
-//    }
-//
-//    //set up the edittext to use the custom keyboard
-//    public static void setupEditTextForCustomKeyboard(CustomKeyboard custom_keyboard1, ScrollView scrollView, EditText... editText) {
-//
-//        for (EditText editText1 : editText) {
-//            editText1.setShowSoftInputOnFocus(false);
-//            custom_keyboard1.setScrollView(scrollView);
-//            editText1.setOnFocusChangeListener((v, hasFocus) -> {
-//                if (hasFocus) {
-//                    custom_keyboard1.setTargetEditText(editText1);
-//                    custom_keyboard1.showKeyboard();
-//                    //smooth scroll to the editText if editText is not visible
-//
-//                    custom_keyboard1.post(() -> {
-//                        if (!isFullyVisible(editText1)) {
-//                            System.out.println("not fully visible");
-//                            scrollView.smoothScrollTo(0, editText1.getTop());
-//                        }
-//                    });
-//                }
-//            });
-//        }
-//    }
-//
-//    public static void setupEditTextForCustomKeyboard(CustomKeyboard custom_keyboard1, ScrollView scrollView, Iterable<EditText> editText) {
-//
-//        for (EditText editText1 : editText) {
-//            editText1.setShowSoftInputOnFocus(false);
-//            custom_keyboard1.setScrollView(scrollView);
-//            editText1.setOnFocusChangeListener((v, hasFocus) -> {
-//                if (hasFocus) {
-//                    custom_keyboard1.setTargetEditText(editText1);
-//                    custom_keyboard1.showKeyboard();
-//                    //smooth scroll to the editText if editText is not visible
-//
-//                    custom_keyboard1.post(() -> {
-//                        if (!isFullyVisible(editText1)) {
-//                            System.out.println("not fully visible");
-//                            scrollView.smoothScrollTo(0, editText1.getTop());
-//                        }
-//                    });
-//                }
-//            });
-//        }
-//    }
+    public static void setupEditTextChangeListener(View[] viewsToDisappear, Button btnCalc, CustomKeyboard custom_keyboard, Iterable<EditText> editTexts) {
+
+        // Check if any of the EditTexts are empty
+        boolean anyEditTextEmpty = false;
+        for (EditText editText : editTexts) {
+            if (editText.getText().toString().isEmpty()) {
+                anyEditTextEmpty = true;
+                break;
+            }
+        }
+
+        hideKeyboardOnClick(btnCalc, custom_keyboard.getContext());
+        // Enable or disable the btnCalc based on EditTexts' contents
+        btnCalc.setEnabled(!anyEditTextEmpty);
+
+        if (anyEditTextEmpty) {
+            Paris.styleBuilder(btnCalc).add(R.style.custom_button_disabled).apply();
+        } else {
+            //use paris style builder to set the background
+            Paris.styleBuilder(btnCalc).add(R.style.custom_button_enabled).apply();
+        }
+
+        for (EditText editText : editTexts) {
+            editText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    for (View view : viewsToDisappear) {
+                        view.setVisibility(View.GONE);
+                    }
+
+                    // Check if any of the EditTexts are empty
+                    boolean anyEditTextEmpty = false;
+                    for (EditText editText : editTexts) {
+                        if (editText.getText().toString().isEmpty()) {
+                            anyEditTextEmpty = true;
+                            break;
+                        }
+                    }
+
+                    //if all the edittexts have some text, activate the button
+                    if (!anyEditTextEmpty) {
+                        btnCalc.setEnabled(true);
+                        Paris.styleBuilder(btnCalc).add(R.style.custom_button_enabled).apply();
+                    } else {
+                        btnCalc.setEnabled(false);
+                        Paris.styleBuilder(btnCalc).add(R.style.custom_button_disabled).apply();
+                    }
+
+                    // Enable or disable the btnCalc based on EditTexts' contents
+                    btnCalc.setEnabled(!anyEditTextEmpty);
+
+                    if (anyEditTextEmpty) {
+                        Paris.styleBuilder(btnCalc).add(R.style.custom_button_disabled).apply();
+                    } else {
+                        //use paris style builder to set the background
+                        Paris.styleBuilder(btnCalc).add(R.style.custom_button_enabled).apply();
+                    }
+
+                }
+            });
+        }
+    }
+
+    public static void setupEditTextChangeListener(View[] viewsToDisappear, Button btnCalc, CustomKeyboard custom_keyboard, EditText... editTexts) {
+
+        // Check if any of the EditTexts are empty
+        boolean anyEditTextEmpty = false;
+        for (EditText editText : editTexts) {
+            if (editText.getText().toString().isEmpty()) {
+                anyEditTextEmpty = true;
+                break;
+            }
+        }
+
+        hideKeyboardOnClick(btnCalc, custom_keyboard.getContext());
+        // Enable or disable the btnCalc based on EditTexts' contents
+        btnCalc.setEnabled(!anyEditTextEmpty);
+
+        if (anyEditTextEmpty) {
+            Paris.styleBuilder(btnCalc).add(R.style.custom_button_disabled).apply();
+        } else {
+            //use paris style builder to set the background
+            Paris.styleBuilder(btnCalc).add(R.style.custom_button_enabled).apply();
+        }
+
+        for (EditText editText : editTexts) {
+            editText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    for (View view : viewsToDisappear) {
+                        view.setVisibility(View.GONE);
+                    }
+
+                    // Check if any of the EditTexts are empty
+                    boolean anyEditTextEmpty = false;
+                    for (EditText editText : editTexts) {
+                        if (editText.getText().toString().isEmpty()) {
+                            anyEditTextEmpty = true;
+                            break;
+                        }
+                    }
+
+                    //if all the edittexts have some text, activate the button
+                    if (!anyEditTextEmpty) {
+                        btnCalc.setEnabled(true);
+                        Paris.styleBuilder(btnCalc).add(R.style.custom_button_enabled).apply();
+                    } else {
+                        btnCalc.setEnabled(false);
+                        Paris.styleBuilder(btnCalc).add(R.style.custom_button_disabled).apply();
+                    }
+
+                    // Enable or disable the btnCalc based on EditTexts' contents
+                    btnCalc.setEnabled(!anyEditTextEmpty);
+
+                    if (anyEditTextEmpty) {
+                        Paris.styleBuilder(btnCalc).add(R.style.custom_button_disabled).apply();
+                    } else {
+                        //use paris style builder to set the background
+                        Paris.styleBuilder(btnCalc).add(R.style.custom_button_enabled).apply();
+                    }
+
+                }
+            });
+        }
+    }
+
+    //set up the edittext to use the custom keyboard
+    public static void setupEditTextForCustomKeyboard(CustomKeyboard custom_keyboard1, ScrollView scrollView, EditText... editText) {
+
+        for (EditText editText1 : editText) {
+            editText1.setShowSoftInputOnFocus(false);
+            custom_keyboard1.setScrollView(scrollView);
+            editText1.setOnFocusChangeListener((v, hasFocus) -> {
+                if (hasFocus) {
+                    custom_keyboard1.setTargetEditText(editText1);
+                    custom_keyboard1.showKeyboard();
+                    //smooth scroll to the editText if editText is not visible
+
+                    custom_keyboard1.post(() -> {
+                        if (!isFullyVisible(editText1)) {
+                            System.out.println("not fully visible");
+                            scrollView.smoothScrollTo(0, editText1.getTop());
+                        }
+                    });
+                }
+            });
+        }
+    }
+
+    public static void setupEditTextForCustomKeyboard(CustomKeyboard custom_keyboard1, ScrollView scrollView, Iterable<EditText> editText) {
+
+        for (EditText editText1 : editText) {
+            editText1.setShowSoftInputOnFocus(false);
+            custom_keyboard1.setScrollView(scrollView);
+            editText1.setOnFocusChangeListener((v, hasFocus) -> {
+                if (hasFocus) {
+                    custom_keyboard1.setTargetEditText(editText1);
+                    custom_keyboard1.showKeyboard();
+                    //smooth scroll to the editText if editText is not visible
+
+                    custom_keyboard1.post(() -> {
+                        if (!isFullyVisible(editText1)) {
+                            System.out.println("not fully visible");
+                            scrollView.smoothScrollTo(0, editText1.getTop());
+                        }
+                    });
+                }
+            });
+        }
+    }
 
     public static Boolean isFullyVisible(View view) {
         Rect rect = new Rect();

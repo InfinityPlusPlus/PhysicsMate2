@@ -13,17 +13,21 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.airbnb.paris.Paris;
 import com.example.physicsmate.R;
+import com.example.physicsmate.ui.CustomKeyboard;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 import static androidx.core.content.ContextCompat.getSystemService;
 import static com.example.physicsmate.Custom_methods.*;
+import static com.example.physicsmate.MainActivity.getKeyboard;
+import static com.example.physicsmate.MainActivity.setLinkedScrollView;
 
 public class LengthContractionFragment extends Fragment {
 
     final double c = 299792458;
     ScrollView sv;
+    CustomKeyboard customKeyboard;
 
     @Nullable
     @Override
@@ -130,17 +134,17 @@ public class LengthContractionFragment extends Fragment {
         Collection<EditText> editTextList = new ArrayList<>();
         editTextList.add(et1);
         editTextList.add(et2);
-//
-//        base_constraint_layout.post(() -> {
-//            customKeyboard = getKeyboard();
-//            if (customKeyboard != null) {
-//                customKeyboard.hideKeyboard();
-//                setupEditTextForCustomKeyboard(customKeyboard, sv, et1, et2);
-//                setupEditTextChangeListener(viewsToDisappear, btnCalc, customKeyboard, editTextList);
-//            }
-//        });
-//
-//        setLinkedScrollView(sv);
+
+        linear_layout.post(() -> {
+            customKeyboard = getKeyboard();
+            if (customKeyboard != null) {
+                customKeyboard.hideKeyboard();
+                setupEditTextForCustomKeyboard(customKeyboard, sv, et1, et2);
+                setupEditTextChangeListener(viewsToDisappear, btnCalc, customKeyboard, editTextList);
+            }
+        });
+
+        setLinkedScrollView(sv);
 
         btnNext.setOnClickListener(view2 -> {
 //            customKeyboard.hideKeyboard();

@@ -5,6 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/cl_app_bar_main"
         tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -21,6 +22,8 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_main"/>
+
+    <include layout="@layout/keyboard_view"/>
 
     <!--com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"

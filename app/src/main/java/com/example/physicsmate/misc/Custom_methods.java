@@ -569,7 +569,7 @@ public class Custom_methods {
         String hexColor = String.format("#%06X", (0xFFFFFF & color));
 
         // Replace numbers (including decimals) with formatted color
-        input = input.replaceAll("(-?\\d*\\.?\\d+([eE][-+]?\\d+)?)", "<font color='" + hexColor + "'>$1</font>");
+        input = input.replaceAll("(?<![a-zA-Z_])(-?\\d*\\.?\\d+([eE][-+]?\\d+)?)", "<font color='" + hexColor + "'>$1</font>");
 
         return input;
     }

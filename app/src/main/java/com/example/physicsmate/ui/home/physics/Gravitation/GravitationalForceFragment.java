@@ -85,11 +85,14 @@ public class GravitationalForceFragment extends Fragment {
         EditText et2 = new EditText(view.getContext());
         EditText et3 = new EditText(view.getContext());
 
+        btnNext.setEnabled(false);
+        btnNext.setClickable(false);
+        Paris.styleBuilder(btnNext).add(R.style.custom_button_disabled).apply();
+
         chkForce.setOnClickListener(view2 -> CB_MainMethod(btnNext, btnClear, a, max_CB_Required, checkBoxes, tv1, tv2, tv3, et1, et2, et3, btnCalc, tvRes, btnCopy));
-
         chkM1.setOnClickListener(view2 -> CB_MainMethod(btnNext, btnClear, a, max_CB_Required, checkBoxes, tv1, tv2, tv3, et1, et2, et3, btnCalc, tvRes, btnCopy));
-
         chkM2.setOnClickListener(view2 -> CB_MainMethod(btnNext, btnClear, a, max_CB_Required, checkBoxes, tv1, tv2, tv3, et1, et2, et3, btnCalc, tvRes, btnCopy));
+        chkR.setOnClickListener(view2 -> CB_MainMethod(btnNext, btnClear, a, max_CB_Required, checkBoxes, tv1, tv2, tv3, et1, et2, et3, btnCalc, tvRes, btnCopy));
 
         Paris.styleBuilder(btnNext).add(R.style.custom_button_enabled).apply();
         Paris.styleBuilder(btnClear).add(R.style.custom_button_enabled).apply();

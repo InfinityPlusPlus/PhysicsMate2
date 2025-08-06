@@ -78,6 +78,10 @@ public class LengthContractionFragment extends Fragment {
         EditText et1 = new EditText(view.getContext());
         EditText et2 = new EditText(view.getContext());
 
+        btnNext.setEnabled(false);
+        btnNext.setClickable(false);
+        Paris.styleBuilder(btnNext).add(R.style.custom_button_disabled).apply();
+
         chkProperLength.setOnClickListener(view2 -> CB_MainMethod(btnNext, btnClear, a, max_CB_Required, checkBoxes, tv1, tv2, et1, et2, btnCalc, tvRes, btnCopy));
 
         chkContractedLength.setOnClickListener(view2 -> CB_MainMethod(btnNext, btnClear, a, max_CB_Required, checkBoxes, tv1, tv2, et1, et2, btnCalc, tvRes, btnCopy));

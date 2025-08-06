@@ -15,7 +15,7 @@ public class TimeDilationFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.rv_fragment_blank, container, false);
+        View view = inflater.inflate(R.layout.sv_ll_fragment_blank, container, false);
 
         return view;
     }

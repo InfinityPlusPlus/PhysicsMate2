@@ -13,7 +13,7 @@
             android:theme="@style/Theme.PhysicsMate"
             tools:targetApi="31">
         <activity
-                android:name=".MainActivity"
+                android:name=".misc.MainActivity"
                 android:exported="true"
                 android:theme="@style/Theme.PhysicsMate.NoActionBar">
             <intent-filter>

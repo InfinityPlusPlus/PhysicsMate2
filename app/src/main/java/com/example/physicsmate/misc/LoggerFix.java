@@ -1,4 +1,4 @@
-package com.example.physicsmate;
+package com.example.physicsmate.misc;
 
 import androidx.annotation.Keep;
 import androidx.annotation.Nullable;

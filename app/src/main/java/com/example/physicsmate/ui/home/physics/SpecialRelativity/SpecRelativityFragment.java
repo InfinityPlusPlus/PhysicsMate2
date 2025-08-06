@@ -35,7 +35,6 @@ public class SpecRelativityFragment extends Fragment {
         recyclerView.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
 
-
         return view;
     }
 }

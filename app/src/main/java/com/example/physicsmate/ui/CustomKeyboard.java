@@ -17,20 +17,20 @@ import com.google.android.flexbox.*;
 
 public class CustomKeyboard extends LinearLayout {
 
-    final double pi = Math.PI;
-    final double e = Math.E;
-    final double h = 6.626070040e-34;
-    final double c = 299792458;
-    final double G = 6.674010551359e-11;
-    final double mu_0 = 4 * pi * 1e-7;
-    final double eps_0 = 8.854187817e-12;
-    final double m_e = 9.10938356e-31;
-    final double m_p = 1.67262158e-27;
-    final double m_n = 1.674927e-27;
-    final double k_B = 1.380649e-23;
-    final double Na = 6.02214076e23;
-    final double sigma = 5.670367e-8;
-    final double gas_constant = 8.31446261815324;
+    public static final double pi = Math.PI;
+    public static final double e = Math.E;
+    public static final double h = 6.626070040e-34;
+    public static final double c = 299792458;
+    public static final double G = 6.674010551359e-11;
+    public static final double mu_0 = 4 * pi * 1e-7;
+    public static final double eps_0 = 8.854187817e-12;
+    public static final double m_e = 9.10938356e-31;
+    public static final double m_p = 1.67262158e-27;
+    public static final double m_n = 1.674927e-27;
+    public static final double k_B = 1.380649e-23;
+    public static final double Na = 6.02214076e23;
+    public static final double sigma = 5.670367e-8;
+    public static final double gas_constant = 8.31446261815324;
     private EditText targetEditText;
     private View scrollView;
     LinearLayout keyboard_layout, keyboard_tab_bar;

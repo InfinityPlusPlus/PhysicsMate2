@@ -43,12 +43,76 @@
             android:label="Time Dilation"
             tools:layout="@layout/rv_fragment_blank" />
 
-
-
     <fragment
             android:id="@+id/gravitationFragment"
             android:name="com.example.physicsmate.ui.home.physics.Gravitation.GravitationFragment"
             android:label="Gravitation"
+            tools:layout="@layout/rv_fragment_blank" />
+
+<!--    List<Topic> topicList = Arrays.asList(-->
+<!--    new Topic("Gravitational Force", R.id.gravitationalForceFragment),-->
+<!--    new Topic("Gravitational Potential", R.id.gravitationalPotentialFragment),-->
+<!--    new Topic("Gravitational Potential Energy", R.id.gravitationalPotentialEnergyFragment),-->
+<!--    new Topic("Gravitational Acceleration", R.id.gravitationalAccelerationFragment),-->
+<!--    new Topic("Escape Velocity", R.id.escapeVelocityFragment),-->
+<!--    new Topic("Orbital velocity", R.id.orbitalVelocityFragment),-->
+<!--    new Topic("Kepler's Law", R.id.keplersLawFragment),-->
+<!--    new Topic("Jeans's Mass", R.id.jeansMassFragment),-->
+<!--    new Topic("Schwarzschild Radius", R.id.schwarzschildRadiusFragment)-->
+<!--    );-->
+
+    <fragment
+            android:id="@+id/gravitationalForceFragment"
+            android:name="com.example.physicsmate.ui.home.physics.Gravitation.GravitationalForceFragment"
+            android:label="Gravitational Force"
+            tools:layout="@layout/rv_fragment_blank" />
+
+    <fragment
+            android:id="@+id/gravitationalPotentialFragment"
+            android:name="com.example.physicsmate.ui.home.physics.Gravitation.GravitationalPotentialFragment"
+            android:label="Gravitational Potential"
+            tools:layout="@layout/rv_fragment_blank" />
+
+    <fragment
+            android:id="@+id/gravitationalPotentialEnergyFragment"
+            android:name="com.example.physicsmate.ui.home.physics.Gravitation.GravitationalPotentialEnergyFragment"
+            android:label="Gravitational Potential Energy"
+            tools:layout="@layout/rv_fragment_blank" />
+
+    <fragment
+            android:id="@+id/gravitationalAccelerationFragment"
+            android:name="com.example.physicsmate.ui.home.physics.Gravitation.GravitationalAccelerationFragment"
+            android:label="Gravitational Acceleration"
+            tools:layout="@layout/rv_fragment_blank" />
+
+    <fragment
+            android:id="@+id/escapeVelocityFragment"
+            android:name="com.example.physicsmate.ui.home.physics.Gravitation.EscapeVelocityFragment"
+            android:label="Escape Velocity"
+            tools:layout="@layout/rv_fragment_blank" />
+
+    <fragment
+            android:id="@+id/orbitalVelocityFragment"
+            android:name="com.example.physicsmate.ui.home.physics.Gravitation.OrbitalVelocityFragment"
+            android:label="Orbital Velocity"
+            tools:layout="@layout/rv_fragment_blank" />
+
+    <fragment
+            android:id="@+id/keplersLawFragment"
+            android:name="com.example.physicsmate.ui.home.physics.Gravitation.KeplersLawFragment"
+            android:label="Kepler's Law"
+            tools:layout="@layout/rv_fragment_blank" />
+
+    <fragment
+            android:id="@+id/jeansMassFragment"
+            android:name="com.example.physicsmate.ui.home.physics.Gravitation.JeansMassFragment"
+            android:label="Jeans's Mass"
+            tools:layout="@layout/rv_fragment_blank" />
+
+    <fragment
+            android:id="@+id/schwarzschildRadiusFragment"
+            android:name="com.example.physicsmate.ui.home.physics.Gravitation.SchwarzschildRadiusFragment"
+            android:label="Schwarzschild Radius"
             tools:layout="@layout/rv_fragment_blank" />
 
 </navigation>

@@ -19,9 +19,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import static androidx.core.content.ContextCompat.getSystemService;
-import static com.example.physicsmate.Custom_methods.*;
-import static com.example.physicsmate.MainActivity.getKeyboard;
-import static com.example.physicsmate.MainActivity.setLinkedScrollView;
+import static com.example.physicsmate.misc.Custom_methods.*;
+import static com.example.physicsmate.misc.MainActivity.getKeyboard;
+import static com.example.physicsmate.misc.MainActivity.setLinkedScrollView;
 
 public class LengthContractionFragment extends Fragment {
 

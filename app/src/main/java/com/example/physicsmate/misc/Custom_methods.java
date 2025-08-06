@@ -1,4 +1,4 @@
-package com.example.physicsmate;
+package com.example.physicsmate.misc;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -20,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import com.agog.mathdisplay.MTMathView;
 import com.airbnb.paris.Paris;
+import com.example.physicsmate.R;
 import com.example.physicsmate.ui.CustomKeyboard;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;

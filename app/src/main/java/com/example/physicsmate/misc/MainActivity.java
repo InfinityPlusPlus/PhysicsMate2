@@ -1,4 +1,4 @@
-package com.example.physicsmate;
+package com.example.physicsmate.misc;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.ScrollView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import com.example.physicsmate.R;
 import com.example.physicsmate.ui.CustomKeyboard;
 import com.google.android.material.navigation.NavigationView;
 import androidx.navigation.NavController;

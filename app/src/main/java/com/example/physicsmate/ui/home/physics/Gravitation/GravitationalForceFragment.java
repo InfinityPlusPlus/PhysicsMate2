@@ -188,7 +188,7 @@ public class GravitationalForceFragment extends Fragment {
                     tv3.setText("Distance in si units");
                     break;
 
-                case "Distance":
+                case "R":
                     tv1.setText("Force in si units");
                     tv2.setText("M1 in si units");
                     tv3.setText("M2 in si units");
@@ -235,7 +235,7 @@ public class GravitationalForceFragment extends Fragment {
                         tvRes.setText(Html.fromHtml(HtmlNumberFormatter(getContext(), "The mass of M2 in si units is " + m2_2)));
                         break;
 
-                    case "Distance":
+                    case "R":
                         double f3 = evalf(et1.getText().toString(), false);
                         double m1_3 = evalf(et2.getText().toString(), false);
                         double m2_3 = evalf(et3.getText().toString(), false);

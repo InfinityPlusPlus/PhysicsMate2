@@ -13,9 +13,9 @@
 
     <fragment
             android:id="@+id/nav_gallery"
-            android:name="com.example.physicsmate.ui.gallery.GalleryFragment"
+            android:name="com.example.physicsmate.ui.notes.NotesFragment"
             android:label="@string/menu_gallery"
-            tools:layout="@layout/fragment_gallery"/>
+            tools:layout="@layout/fragment_notes"/>
 
     <fragment
             android:id="@+id/nav_slideshow"
@@ -49,7 +49,7 @@
             android:label="Gravitation"
             tools:layout="@layout/rv_fragment_blank" />
 
-<!--    List<Topic> topicList = Arrays.asList(-->
+<!--    List<Topic> homeTopicList = Arrays.asList(-->
 <!--    new Topic("Gravitational Force", R.id.gravitationalForceFragment),-->
 <!--    new Topic("Gravitational Potential", R.id.gravitationalPotentialFragment),-->
 <!--    new Topic("Gravitational Potential Energy", R.id.gravitationalPotentialEnergyFragment),-->

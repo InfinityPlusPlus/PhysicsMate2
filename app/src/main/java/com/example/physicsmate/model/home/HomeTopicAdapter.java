@@ -1,4 +1,4 @@
-package com.example.physicsmate.model;
+package com.example.physicsmate.model.home;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,15 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.physicsmate.R;
 import java.util.List;
 
-public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHolder> {
+public class HomeTopicAdapter extends RecyclerView.Adapter<HomeTopicAdapter.TopicViewHolder> {
 
-    private final List<Topic> topics;
+    private final List<HomeTopic> homeTopics;
     private final Fragment parentFragment;
     private final Boolean isMenu;
 
-    public TopicAdapter(Fragment parentFragment, List<Topic> topics, Boolean isMenu) {
+    public HomeTopicAdapter(Fragment parentFragment, List<HomeTopic> homeTopics, Boolean isMenu) {
         this.parentFragment = parentFragment;
-        this.topics = topics;
+        this.homeTopics = homeTopics;
         this.isMenu = isMenu;
     }
 
@@ -29,28 +29,28 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
         View view;
         if (isMenu)
         {
-            view =LayoutInflater.from(parent.getContext()).inflate(R.layout.item_topic_menu, parent, false);
+            view =LayoutInflater.from(parent.getContext()).inflate(R.layout.home_item_topic_menu, parent, false);
         }
         else
         {
-            view =LayoutInflater.from(parent.getContext()).inflate(R.layout.item_topic, parent, false);
+            view =LayoutInflater.from(parent.getContext()).inflate(R.layout.home_item_topic, parent, false);
         }
         return new TopicViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TopicViewHolder holder, int position) {
-        Topic topic = topics.get(position);
-        holder.button.setText(topic.title);
+        HomeTopic homeTopic = homeTopics.get(position);
+        holder.button.setText(homeTopic.title);
         holder.button.setOnClickListener(v ->
                 NavHostFragment.findNavController(parentFragment)
-                        .navigate(topic.navId)
+                        .navigate(homeTopic.navId)
         );
     }
 
     @Override
     public int getItemCount() {
-        return topics.size();
+        return homeTopics.size();
     }
 
     public static class TopicViewHolder extends RecyclerView.ViewHolder {

@@ -9,8 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.physicsmate.R;
-import com.example.physicsmate.model.Topic;
-import com.example.physicsmate.model.TopicAdapter;
+import com.example.physicsmate.model.home.HomeTopic;
+import com.example.physicsmate.model.home.HomeTopicAdapter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,12 +26,12 @@ public class SpecRelativityFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         //ScrollView scrollView = view.findViewById(R.id.scrollView);
 
-        List<Topic> topicList = Arrays.asList(
-                new Topic("Length Contraction", R.id.lengthContractionFragment),
-                new Topic("Time Dilation", R.id.timeDilationFragment)
+        List<HomeTopic> homeTopicList = Arrays.asList(
+                new HomeTopic("Length Contraction", R.id.lengthContractionFragment),
+                new HomeTopic("Time Dilation", R.id.timeDilationFragment)
         );
 
-        TopicAdapter adapter = new TopicAdapter(this, topicList, false);
+        HomeTopicAdapter adapter = new HomeTopicAdapter(this, homeTopicList, false);
         recyclerView.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
 

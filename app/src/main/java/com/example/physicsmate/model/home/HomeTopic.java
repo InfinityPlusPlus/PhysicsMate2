@@ -1,10 +1,10 @@
-package com.example.physicsmate.model;
+package com.example.physicsmate.model.home;
 
-public class Topic {
+public class HomeTopic {
     public String title;
     public int navId;  // ID from nav_graph for navigation
 
-    public Topic(String title, int navId) {
+    public HomeTopic(String title, int navId) {
         this.title = title;
         this.navId = navId;
     }

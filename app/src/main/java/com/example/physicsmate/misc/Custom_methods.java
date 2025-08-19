@@ -1327,37 +1327,6 @@ public class Custom_methods {
 
     //method to calculate the nth integral of a function
 
-    /**
-     * Retrieves the LaTeX representation of a mathematical function.
-     *
-     * @param function the mathematical function to convert to LaTeX
-     * @return the LaTeX representation of the function
-     */
-    public static String getTex(String function, MTMathView mathView) {
-        try {
-            // false -> switch to Mathematica syntax mode:
-            EvalEngine engine = new EvalEngine(false);
-            //
-            TeXUtilities texUtil = new TeXUtilities(engine, false);
-
-            StringWriter stw = new StringWriter();
-            texUtil.toTeX(IExprConverter(function), stw);
-
-            String stw_string = stw.toString().replaceAll("([a-zA-Z])(\\d+)", "$1_{$2}");
-            mathView.setFontSize(60f);
-
-
-            return "\\color{#D0D0D0}{" + stw_string + "}";
-
-        } catch (SyntaxError e) {
-            // catch Symja parser errors here
-        } catch (MathException me) {
-            // catch Symja math errors here
-        } catch (Exception ignored) {
-        }
-
-        return StringError;
-    }
 
     public static float convertPixelsToDp(float px) {
         DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
@@ -1397,6 +1366,61 @@ public class Custom_methods {
             String stw_string = stw.toString().replaceAll("([a-zA-Z])(\\d+)", "$1_{$2}");
 
             mathView.setFontSize(fontSize);
+            return "\\color{#D0D0D0}{" + stw_string + "}";
+
+        } catch (SyntaxError e) {
+            // catch Symja parser errors here
+        } catch (MathException me) {
+            // catch Symja math errors here
+        } catch (Exception ignored) {
+        }
+
+        return StringError;
+    }
+
+    /**
+     * Retrieves the LaTeX representation of a mathematical function.
+     *
+     * @param function the mathematical function to convert to LaTeX
+     * @return the LaTeX representation of the function
+     */
+    public static String getTex(String function, MTMathView mathView) {
+        try {
+            // false -> switch to Mathematica syntax mode:
+            EvalEngine engine = new EvalEngine(false);
+            //
+            TeXUtilities texUtil = new TeXUtilities(engine, false);
+
+            StringWriter stw = new StringWriter();
+            texUtil.toTeX(IExprConverter(function), stw);
+
+            String stw_string = stw.toString().replaceAll("([a-zA-Z])(\\d+)", "$1_{$2}");
+            mathView.setFontSize(60f);
+
+
+            return "\\color{#D0D0D0}{" + stw_string + "}";
+
+        } catch (SyntaxError e) {
+            // catch Symja parser errors here
+        } catch (MathException me) {
+            // catch Symja math errors here
+        } catch (Exception ignored) {
+        }
+
+        return StringError;
+    }
+
+    public static String getTex(String function) {
+        try {
+            // false -> switch to Mathematica syntax mode:
+            EvalEngine engine = new EvalEngine(false);
+            //
+            TeXUtilities texUtil = new TeXUtilities(engine, false);
+
+            StringWriter stw = new StringWriter();
+            texUtil.toTeX(IExprConverter(function), stw);
+
+            String stw_string = stw.toString().replaceAll("([a-zA-Z])(\\d+)", "$1_{$2}");
             return "\\color{#D0D0D0}{" + stw_string + "}";
 
         } catch (SyntaxError e) {

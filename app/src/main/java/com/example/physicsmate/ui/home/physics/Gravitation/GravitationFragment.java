@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.physicsmate.R;
-import com.example.physicsmate.model.Topic;
-import com.example.physicsmate.model.TopicAdapter;
+import com.example.physicsmate.model.home.HomeTopic;
+import com.example.physicsmate.model.home.HomeTopicAdapter;
 import com.example.physicsmate.ui.CustomKeyboard;
 
 import java.util.Arrays;
@@ -30,19 +30,19 @@ public class GravitationFragment extends Fragment {
         View view = inflater.inflate(R.layout.rv_fragment_blank, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
 
-        List<Topic> topicList = Arrays.asList(
-                new Topic("Gravitational Force", R.id.gravitationalForceFragment),
-                new Topic("Gravitational Potential", R.id.gravitationalPotentialFragment),
-                new Topic("Gravitational Potential Energy", R.id.gravitationalPotentialEnergyFragment),
-                new Topic("Gravitational Acceleration", R.id.gravitationalAccelerationFragment),
-                new Topic("Escape Velocity", R.id.escapeVelocityFragment),
-                new Topic("Orbital velocity", R.id.orbitalVelocityFragment),
-                new Topic("Kepler's Law", R.id.keplersLawFragment),
-                new Topic("Jeans's Mass", R.id.jeansMassFragment),
-                new Topic("Schwarzschild Radius", R.id.schwarzschildRadiusFragment)
+        List<HomeTopic> homeTopicList = Arrays.asList(
+                new HomeTopic("Gravitational Force", R.id.gravitationalForceFragment),
+                new HomeTopic("Gravitational Potential", R.id.gravitationalPotentialFragment),
+                new HomeTopic("Gravitational Potential Energy", R.id.gravitationalPotentialEnergyFragment),
+                new HomeTopic("Gravitational Acceleration", R.id.gravitationalAccelerationFragment),
+                new HomeTopic("Escape Velocity", R.id.escapeVelocityFragment),
+                new HomeTopic("Orbital velocity", R.id.orbitalVelocityFragment),
+                new HomeTopic("Kepler's Law", R.id.keplersLawFragment),
+                new HomeTopic("Jeans's Mass", R.id.jeansMassFragment),
+                new HomeTopic("Schwarzschild Radius", R.id.schwarzschildRadiusFragment)
         );
 
-        TopicAdapter adapter = new TopicAdapter(this, topicList, false);
+        HomeTopicAdapter adapter = new HomeTopicAdapter(this, homeTopicList, false);
         recyclerView.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
 

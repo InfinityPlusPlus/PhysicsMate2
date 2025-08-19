@@ -52,6 +52,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
 import static de.lab4inf.math.util.Accuracy.round;
 import static org.matheclipse.core.expression.F.eval;
 
@@ -1353,7 +1354,7 @@ public class Custom_methods {
         return Math.round(px / (Resources.getSystem().getDisplayMetrics().xdpi / DisplayMetrics.DENSITY_DEFAULT));
     }
 
-    public static String getTex(String function, float fontSize, MTMathView mathView) {
+    public static String getTex(String function, float fontSize, MTMathView mathView, Boolean shouldConvertToTex) {
         try {
             // false -> switch to Mathematica syntax mode:
             EvalEngine engine = new EvalEngine(false);
@@ -1361,9 +1362,27 @@ public class Custom_methods {
             TeXUtilities texUtil = new TeXUtilities(engine, false);
 
             StringWriter stw = new StringWriter();
-            texUtil.toTeX(IExprConverter(function), stw);
+            String stw_string = function;
+            stw_string = stw_string.replace("Epsilon", "\\epsilon");
+            stw_string = stw_string.replace("Alpha", "\\alpha");
+            stw_string = stw_string.replace("Beta", "\\beta");
+            stw_string = stw_string.replace("Gamma", "\\gamma");
+            stw_string = stw_string.replace("Delta", "\\delta");
+            stw_string = stw_string.replace("Theta", "\\theta");
+            stw_string = stw_string.replace("Lambda", "\\lambda");
+            stw_string = stw_string.replace("Xi", "\\xi");
+            stw_string = stw_string.replace("Pi", "\\pi");
+            stw_string = stw_string.replace("Sigma", "\\sigma");
+            stw_string = stw_string.replace("Phi", "\\phi");
+            stw_string = stw_string.replace("Psi", "\\psi");
+            stw_string = stw_string.replace("Omega", "\\omega");
+            stw_string = stw_string.replace("kappa", "\\kappa");
 
-            String stw_string = stw.toString().replaceAll("([a-zA-Z])(\\d+)", "$1_{$2}");
+            if (shouldConvertToTex) {
+                texUtil.toTeX(IExprConverter(function), stw);
+                stw_string = stw.toString();
+                stw_string = stw_string.replaceAll("([a-zA-Z])(\\d+)", "$1_{$2}");
+            }
 
             mathView.setFontSize(fontSize);
             return "\\color{#D0D0D0}{" + stw_string + "}";
@@ -1384,20 +1403,35 @@ public class Custom_methods {
      * @param function the mathematical function to convert to LaTeX
      * @return the LaTeX representation of the function
      */
-    public static String getTex(String function, MTMathView mathView) {
+    public static String getTex(String function, MTMathView mathView, Boolean shouldConvertToTex) {
         try {
             // false -> switch to Mathematica syntax mode:
             EvalEngine engine = new EvalEngine(false);
-            //
             TeXUtilities texUtil = new TeXUtilities(engine, false);
 
             StringWriter stw = new StringWriter();
-            texUtil.toTeX(IExprConverter(function), stw);
+            String stw_string = function;
+            stw_string = stw_string.replace("Epsilon", "\\epsilon");
+            stw_string = stw_string.replace("Alpha", "\\alpha");
+            stw_string = stw_string.replace("Beta", "\\beta");
+            stw_string = stw_string.replace("Gamma", "\\gamma");
+            stw_string = stw_string.replace("Delta", "\\delta");
+            stw_string = stw_string.replace("Theta", "\\theta");
+            stw_string = stw_string.replace("Lambda", "\\lambda");
+            stw_string = stw_string.replace("Xi", "\\xi");
+            stw_string = stw_string.replace("Pi", "\\pi");
+            stw_string = stw_string.replace("Sigma", "\\sigma");
+            stw_string = stw_string.replace("Phi", "\\phi");
+            stw_string = stw_string.replace("Psi", "\\psi");
+            stw_string = stw_string.replace("Omega", "\\omega");
+            stw_string = stw_string.replace("kappa", "\\kappa");
+            if (shouldConvertToTex) {
+                texUtil.toTeX(IExprConverter(function), stw);
+                stw_string = stw.toString();
+                stw_string = stw_string.replaceAll("([a-zA-Z])(\\d+)", "$1_{$2}");
+            }
 
-            String stw_string = stw.toString().replaceAll("([a-zA-Z])(\\d+)", "$1_{$2}");
             mathView.setFontSize(60f);
-
-
             return "\\color{#D0D0D0}{" + stw_string + "}";
 
         } catch (SyntaxError e) {
@@ -1410,7 +1444,7 @@ public class Custom_methods {
         return StringError;
     }
 
-    public static String getTex(String function) {
+    public static String getTex(String function, Boolean shouldConvertToTex) {
         try {
             // false -> switch to Mathematica syntax mode:
             EvalEngine engine = new EvalEngine(false);
@@ -1418,9 +1452,28 @@ public class Custom_methods {
             TeXUtilities texUtil = new TeXUtilities(engine, false);
 
             StringWriter stw = new StringWriter();
-            texUtil.toTeX(IExprConverter(function), stw);
+            String stw_string = function;
+            stw_string = stw_string.replace("Epsilon", "\\epsilon");
+            stw_string = stw_string.replace("Alpha", "\\alpha");
+            stw_string = stw_string.replace("Beta", "\\beta");
+            stw_string = stw_string.replace("Gamma", "\\gamma");
+            stw_string = stw_string.replace("Delta", "\\delta");
+            stw_string = stw_string.replace("Theta", "\\theta");
+            stw_string = stw_string.replace("Lambda", "\\lambda");
+            stw_string = stw_string.replace("Xi", "\\xi");
+            stw_string = stw_string.replace("Pi", "\\pi");
+            stw_string = stw_string.replace("Sigma", "\\sigma");
+            stw_string = stw_string.replace("Phi", "\\phi");
+            stw_string = stw_string.replace("Psi", "\\psi");
+            stw_string = stw_string.replace("Omega", "\\omega");
+            stw_string = stw_string.replace("kappa", "\\kappa");
 
-            String stw_string = stw.toString().replaceAll("([a-zA-Z])(\\d+)", "$1_{$2}");
+            if (shouldConvertToTex) {
+                texUtil.toTeX(IExprConverter(function), stw);
+                stw_string = stw.toString();
+                stw_string = stw_string.replaceAll("([a-zA-Z])(\\d+)", "$1_{$2}");
+            }
+
             return "\\color{#D0D0D0}{" + stw_string + "}";
 
         } catch (SyntaxError e) {

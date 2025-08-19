@@ -104,14 +104,7 @@ public class NotesTopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         void bind(NotesFormula notesFormula) {
             title.setText(notesFormula.getTitle());
-            if (notesFormula.getShouldConvertToTex())
-            {
-                mathView.setLatex(getTex(notesFormula.getLatex(), mathView));
-            }
-            else
-            {
-                mathView.setLatex(notesFormula.getLatex()); // no $$ needed
-            }
+            mathView.setLatex(getTex(notesFormula.getFormulaEqn(), mathView, notesFormula.getShouldConvertToTex()));
         }
     }
 

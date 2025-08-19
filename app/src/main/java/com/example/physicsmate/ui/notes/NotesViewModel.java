@@ -25,13 +25,13 @@ public class NotesViewModel extends ViewModel {
         ));
         gravity.addFormula(new NotesFormula(
                 "Gravitational Potential Energy",
-                "U = -G*m_1*m_2/r"
+                "U = -G*m1*m2/r"
         ));
 
         NotesTopic em = new NotesTopic("Electricity & Magnetism");
         em.addFormula(new NotesFormula(
                 "Coulomb's Law",
-                "F = 1/(4*pi*epsilon_0)*q_1*q_2/r^2"
+                "F = 1/(4*pi*Epsilon)*q1*q2/r^2"
         ));
         em.addFormula(new NotesFormula(
                 "Gauss's Law",

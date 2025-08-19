@@ -15,7 +15,10 @@
     <com.agog.mathdisplay.MTMathView
             android:id="@+id/formula_math"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:foregroundGravity="center"
+            android:layout_gravity="center"
+    />
 </LinearLayout>
 
 

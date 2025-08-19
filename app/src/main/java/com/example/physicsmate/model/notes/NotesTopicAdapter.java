@@ -12,6 +12,8 @@ import com.example.physicsmate.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.physicsmate.misc.Custom_methods.getTex;
+
 public class NotesTopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int TYPE_TOPIC = 0;
@@ -102,7 +104,14 @@ public class NotesTopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         void bind(NotesFormula notesFormula) {
             title.setText(notesFormula.getTitle());
-            mathView.setLatex(notesFormula.getLatex()); // no $$ needed
+            if (notesFormula.getShouldConvertToTex())
+            {
+                mathView.setLatex(getTex(notesFormula.getLatex(), mathView));
+            }
+            else
+            {
+                mathView.setLatex(notesFormula.getLatex()); // no $$ needed
+            }
         }
     }
 

@@ -20,21 +20,23 @@ public class NotesViewModel extends ViewModel {
         NotesTopic gravity = new NotesTopic("Gravity");
         gravity.addFormula(new NotesFormula(
                 "Newton's Law of Gravitation",
-                "F = G \\frac{m_1 m_2}{r^2}"
+                "F = G*m1*m2/r^2"
+
         ));
         gravity.addFormula(new NotesFormula(
                 "Gravitational Potential Energy",
-                "U = - G \\frac{m_1 m_2}{r}"
+                "U = -G*m_1*m_2/r"
         ));
 
         NotesTopic em = new NotesTopic("Electricity & Magnetism");
         em.addFormula(new NotesFormula(
                 "Coulomb's Law",
-                "F = k \\frac{q_1 q_2}{r^2}"
+                "F = 1/(4*pi*epsilon_0)*q_1*q_2/r^2"
         ));
         em.addFormula(new NotesFormula(
                 "Gauss's Law",
-                "\\oint E \\cdot dA = \\frac{q_{enc}}{\\epsilon_0}"
+                "\\oint E \\cdot dA = \\frac{q_{enc}}{\\epsilon_0}",
+                false
         ));
 
         List<NotesTopic> list = new ArrayList<>();

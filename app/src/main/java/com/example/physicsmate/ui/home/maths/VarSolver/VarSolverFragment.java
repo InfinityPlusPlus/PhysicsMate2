@@ -9,6 +9,7 @@ import android.os.Looper;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,23 +40,19 @@ public class VarSolverFragment extends Fragment {
     TextView tvRes;
     LinearLayout rowsLinearLayout, MVsLinearLayout;
     ScrollView sv;
-    MTMathView mv1;
-    CustomKeyboard customKeyboard;
+    CustomKeyboard customKeyboard = getKeyboard();
     View view;
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
-    {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_var_solver2, container, false);
-        LinearLayout linear_layout = view.findViewById(R.id.linearLayout);
 
+        sv = view.findViewById(R.id.var_solver_scroll_view);
+        LinearLayout linear_layout = view.findViewById(R.id.linearLayout);
         rowsLinearLayout = view.findViewById(R.id.var_solver_ets);
         tvRes = view.findViewById(R.id.var_solver_solution);
-        sv = view.findViewById(R.id.var_solver_scroll_view);
 
-        et1 = view.findViewById(R.id.var_solver_et1);
-        et1.addTextChangedListener(new CustomTextWatcher());
         etVars = view.findViewById(R.id.var_solver_variables);
 
         btnAddRow = view.findViewById(R.id.var_solver_add_button);
@@ -68,7 +65,6 @@ public class VarSolverFragment extends Fragment {
 
         View[] viewsToDisappear = {btnCopy, tvRes};
         Collection<EditText> editTextList = new ArrayList<>();
-        editTextList.add(et1);
         editTextList.add(etVars);
 
         linear_layout.post(() -> {
@@ -82,20 +78,21 @@ public class VarSolverFragment extends Fragment {
 
         setLinkedScrollView(sv);
 
-        btnCalc.setOnClickListener(v ->
-        {
+        btnCalc.setOnClickListener(v -> {
             customKeyboard.hideKeyboard();
             solveEquations();
         });
 
-        mv1 = view.findViewById(R.id.var_solver_mv1);
         MVsLinearLayout = view.findViewById(R.id.var_solver_MVs);
 
+        // --- Add the FIRST row + MathView together ---
+        addRow();
+
         tvRes.setVisibility(View.GONE);
-        mv1.setVisibility(View.GONE);
 
         return view;
     }
+
 
     private void solveEquations() {
         int numOfEqns = rowsLinearLayout.getChildCount();
@@ -147,9 +144,20 @@ public class VarSolverFragment extends Fragment {
         et.addTextChangedListener(new CustomTextWatcher());
         setupEditTextForCustomKeyboard(customKeyboard, sv, et);
 
+        // --- Add corresponding MathView ---
         @SuppressLint("InflateParams")
         MTMathView mvItem = (MTMathView) getLayoutInflater().inflate(R.layout.var_solver_mv2, null, false);
+        mvItem.setForegroundGravity(Gravity.CENTER);
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+        params.setMargins(0, 30, 0, 30); // spacing between MathViews
+        mvItem.setLayoutParams(params);
+
         MVsLinearLayout.addView(mvItem);
+        Paris.styleBuilder(mvItem).add(R.style.custom_mathJaxView);
 
         int lastIndex = rowsLinearLayout.getChildCount() - 1;
         ImageButton deleteBtn = (ImageButton) rowItem.getChildAt(1);
@@ -157,6 +165,8 @@ public class VarSolverFragment extends Fragment {
 
         solveButtonClickable();
     }
+
+
 
     public void removeRowWithAnimation(int index) {
         try {
@@ -181,33 +191,29 @@ public class VarSolverFragment extends Fragment {
     public void solveButtonClickable() {
         int numOfEqns = rowsLinearLayout.getChildCount();
 
-        if (et1.getText().toString().isEmpty()) {
-            setSolveButtonState(false, "Enter all the fields");
-            mv1.setVisibility(View.GONE);
-            return;
-        }
-
-        for (int i = 1; i < numOfEqns; i++) {
+        for (int i = 0; i < numOfEqns; i++) {
             LinearLayout eqnRowItem = (LinearLayout) rowsLinearLayout.getChildAt(i);
             EditText et = (EditText) eqnRowItem.getChildAt(0);
+
             if (et.getText().toString().isEmpty()) {
                 setSolveButtonState(false, "Enter all the fields");
-                mv1.setVisibility(View.GONE);
                 return;
             }
         }
 
         setSolveButtonState(true, "Solve");
-        mv1.setLatex(getTex(et1.getText().toString(), mv1, false));
-        mv1.setVisibility(View.VISIBLE);
 
-        for (int i = 1; i < numOfEqns; i++) {
+        // Update LaTeX for all equations
+        for (int i = 0; i < numOfEqns; i++) {
             LinearLayout eqnRowItem = (LinearLayout) rowsLinearLayout.getChildAt(i);
             EditText et = (EditText) eqnRowItem.getChildAt(0);
             MTMathView mv = (MTMathView) MVsLinearLayout.getChildAt(i);
             mv.setLatex(getTex(et.getText().toString(), mv, false));
+            mv.setVisibility(View.VISIBLE);
         }
     }
+
+
 
     private void setSolveButtonState(boolean enabled, CharSequence message) {
         btnCalc.setEnabled(enabled);

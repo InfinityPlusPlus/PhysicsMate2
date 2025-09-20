@@ -1444,6 +1444,45 @@ public class Custom_methods {
         return StringError;
     }
 
+    public static String getTex(String function, MTMathView mathView) {
+        try {
+            // false -> switch to Mathematica syntax mode:
+            EvalEngine engine = new EvalEngine(false);
+            TeXUtilities texUtil = new TeXUtilities(engine, false);
+
+            StringWriter stw = new StringWriter();
+            String stw_string = function;
+            stw_string = stw_string.replace("Epsilon", "\\epsilon");
+            stw_string = stw_string.replace("Alpha", "\\alpha");
+            stw_string = stw_string.replace("Beta", "\\beta");
+            stw_string = stw_string.replace("Gamma", "\\gamma");
+            stw_string = stw_string.replace("Delta", "\\delta");
+            stw_string = stw_string.replace("Theta", "\\theta");
+            stw_string = stw_string.replace("Lambda", "\\lambda");
+            stw_string = stw_string.replace("Xi", "\\xi");
+            stw_string = stw_string.replace("Pi", "\\pi");
+            stw_string = stw_string.replace("Sigma", "\\sigma");
+            stw_string = stw_string.replace("Phi", "\\phi");
+            stw_string = stw_string.replace("Psi", "\\psi");
+            stw_string = stw_string.replace("Omega", "\\omega");
+            stw_string = stw_string.replace("kappa", "\\kappa");
+            texUtil.toTeX(IExprConverter(function), stw);
+            stw_string = stw.toString();
+            stw_string = stw_string.replaceAll("([a-zA-Z])(\\d+)", "$1_{$2}");
+
+            mathView.setFontSize(60f);
+            return "\\color{#D0D0D0}{" + stw_string + "}";
+
+        } catch (SyntaxError e) {
+            // catch Symja parser errors here
+        } catch (MathException me) {
+            // catch Symja math errors here
+        } catch (Exception ignored) {
+        }
+
+        return StringError;
+    }
+
     public static String getTex(String function, Boolean shouldConvertToTex) {
         try {
             // false -> switch to Mathematica syntax mode:

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:foregroundGravity="center"
+              android:orientation="horizontal"
+              android:weightSum="2">
+
+    <EditText
+            style="@style/custom_edittext"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_weight="1.75"
+            android:hint="2x + 3y = 13"/>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+            android:background="@color/app_bg"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:foregroundGravity="center"
+            app:srcCompat="@drawable/baseline_delete_outline_24"/>
+
+
+</LinearLayout>

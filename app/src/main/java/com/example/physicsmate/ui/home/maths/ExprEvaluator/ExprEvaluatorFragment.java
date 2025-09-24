@@ -37,14 +37,16 @@ public class ExprEvaluatorFragment extends Fragment {
 
     ScrollView sv;
     CustomKeyboard customKeyboard;
+    Button btnCalc, btnCopy;
+    TextView tvVars, tvFn;
+    EditText etVars, etFn;
+    LinearLayout linear_layout;
+    TextView tvRes;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.sv_ll_fragment_blank, container, false);
-
-        TextView tvVars, tvFn;
-        EditText etVars, etFn;
         sv = view.findViewById(R.id.scrollView);
 
         tvVars = new TextView(view.getContext());
@@ -62,37 +64,37 @@ public class ExprEvaluatorFragment extends Fragment {
         tvVars.setText("Enter the list of variables");
         tvFn.setText("Enter the function f(" + etVars.getText() + ")");
 
-        LinearLayout linear_layout = view.findViewById(R.id.linearLayout);
+        linear_layout = view.findViewById(R.id.linearLayout);
 
         linear_layout.addView(tvVars, 0);
         linear_layout.addView(etVars, 1);
         linear_layout.addView(tvFn, 2);
         linear_layout.addView(etFn, 3);
 
-        Button btnCopy = new Button(view.getContext());
-        Button btnCalc = new Button(view.getContext());
+        btnCopy = new Button(view.getContext());
+        btnCalc = new Button(view.getContext());
 
-        TextView tvRes = new TextView(view.getContext());
+        tvRes = new TextView(view.getContext());
         Paris.styleBuilder(tvRes).add(R.style.answer_textView).apply();
 
         Paris.styleBuilder(btnCopy).add(R.style.custom_button_enabled).apply();
         btnCopy.setText("Copy");
 
         btnCopy.setVisibility(View.GONE);
-        btnCalc.setVisibility(View.GONE);
+        btnCalc.setVisibility(View.VISIBLE);
         tvRes.setVisibility(View.GONE);
         btnCopy.setVisibility(View.GONE);
 
-        Paris.styleBuilder(btnCalc).add(R.style.custom_button_enabled).apply();
+        Paris.styleBuilder(btnCalc).add(R.style.custom_button_disabled).apply();
 
-        btnCalc.setText("Calculate");
+        btnCalc.setText("Please enter all the fields");
 
-        linear_layout.addView(btnCalc, 12);
+        linear_layout.addView(btnCalc, 4);
 
         Paris.styleBuilder(tvRes).add(R.style.answer_textView).apply();
 
-        linear_layout.addView(tvRes, 13);
-        linear_layout.addView(btnCopy, 14);
+        linear_layout.addView(tvRes, 5);
+        linear_layout.addView(btnCopy, 6);
 
         tvRes.setVisibility(View.GONE);
 
@@ -114,38 +116,11 @@ public class ExprEvaluatorFragment extends Fragment {
 
         btnCalc.setOnClickListener(v -> {
             customKeyboard.hideKeyboard();
-            solveEquations();
         });
 
         tvRes.setVisibility(View.GONE);
 
         return view;
-    }
-
-    @SuppressLint("SetTextI18n")
-    public void solveButtonClickable() {
-        int numOfEqns = rowsLinearLayout.getChildCount();
-
-        for (int i = 0; i < numOfEqns; i++) {
-            LinearLayout eqnRowItem = (LinearLayout) rowsLinearLayout.getChildAt(i);
-            EditText et = (EditText) eqnRowItem.getChildAt(0);
-
-            if (et.getText().toString().isEmpty()) {
-                setSolveButtonState(false, "Enter all the fields");
-                return;
-            }
-        }
-
-        setSolveButtonState(true, "Solve");
-
-        // Update LaTeX for all equations
-        for (int i = 0; i < numOfEqns; i++) {
-            LinearLayout eqnRowItem = (LinearLayout) rowsLinearLayout.getChildAt(i);
-            EditText et = (EditText) eqnRowItem.getChildAt(0);
-            MTMathView mv = (MTMathView) MVsLinearLayout.getChildAt(i);
-            mv.setLatex(getTex(et.getText().toString(), mv, false));
-            mv.setVisibility(View.VISIBLE);
-        }
     }
 
     private void setSolveButtonState(boolean enabled, CharSequence message) {

@@ -123,4 +123,10 @@
             android:label="Variable Solver"
             tools:layout="@layout/rv_fragment_blank" />
 
+    <fragment
+            android:id="@+id/ExprEvaluatorFragment"
+            android:name="com.example.physicsmate.ui.home.maths.ExprEvaluator.ExprEvaluatorFragment"
+            android:label="Expression Evaluator"
+            tools:layout="@layout/rv_fragment_blank" />
+
 </navigation>

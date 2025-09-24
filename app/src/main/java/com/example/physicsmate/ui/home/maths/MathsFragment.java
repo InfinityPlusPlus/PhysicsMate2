@@ -27,7 +27,8 @@ public class MathsFragment extends Fragment {
         RecyclerView rv = view.findViewById(R.id.rvTopics);
 
         List<HomeTopic> homeTopicList = Arrays.asList(
-                new HomeTopic("Variable Solver", R.id.VarSolverFragment)
+                new HomeTopic("Variable Solver", R.id.VarSolverFragment),
+                new HomeTopic("Expression Evaluator", R.id.ExprEvaluatorFragment)
         );
 
         HomeTopicAdapter adapter = new HomeTopicAdapter(this, homeTopicList, true);

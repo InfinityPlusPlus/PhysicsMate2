@@ -661,9 +661,11 @@ public class Custom_methods {
 
         if (anyEditTextEmpty) {
             Paris.styleBuilder(btnCalc).add(R.style.custom_button_disabled).apply();
+            btnCalc.setText("Please enter all the fields");
         } else {
             //use paris style builder to set the background
             Paris.styleBuilder(btnCalc).add(R.style.custom_button_enabled).apply();
+            btnCalc.setText("Calculate");
         }
 
         for (EditText editText : editTexts) {
@@ -697,9 +699,11 @@ public class Custom_methods {
                     if (!anyEditTextEmpty) {
                         btnCalc.setEnabled(true);
                         Paris.styleBuilder(btnCalc).add(R.style.custom_button_enabled).apply();
+                        btnCalc.setText("Calculate");
                     } else {
                         btnCalc.setEnabled(false);
                         Paris.styleBuilder(btnCalc).add(R.style.custom_button_disabled).apply();
+                        btnCalc.setText("Please enter all the fields");
                     }
 
                     // Enable or disable the btnCalc based on EditTexts' contents
@@ -707,9 +711,11 @@ public class Custom_methods {
 
                     if (anyEditTextEmpty) {
                         Paris.styleBuilder(btnCalc).add(R.style.custom_button_disabled).apply();
+                        btnCalc.setText("Please enter all the fields");
                     } else {
                         //use paris style builder to set the background
                         Paris.styleBuilder(btnCalc).add(R.style.custom_button_enabled).apply();
+                        btnCalc.setText("Calculate");
                     }
 
                 }

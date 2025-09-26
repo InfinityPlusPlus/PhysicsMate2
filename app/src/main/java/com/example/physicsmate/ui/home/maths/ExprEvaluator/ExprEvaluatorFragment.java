@@ -54,15 +54,33 @@ public class ExprEvaluatorFragment extends Fragment {
         etVars = new EditText(view.getContext());
         etFn = new EditText(view.getContext());
 
-        etVars.setText("x");
+        etVars.setHint("x = pi, y = e");
+        etFn.setHint("sin(x)*y");
 
         Paris.styleBuilder(tvVars).add(R.style.custom_textView).apply();
         Paris.styleBuilder(tvFn).add(R.style.custom_textView).apply();
         Paris.styleBuilder(etVars).add(R.style.custom_edittext).apply();
         Paris.styleBuilder(etFn).add(R.style.custom_edittext).apply();
 
-        tvVars.setText("Enter the list of variables");
-        tvFn.setText("Enter the function f(" + etVars.getText() + ")");
+        tvVars.setText("Enter the variables");
+        tvFn.setText("Enter the function f(x, y)");
+
+        etVars.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                tvFn.setText("Enter the function f(" + getVars() + ")");
+            }
+        });
 
         linear_layout = view.findViewById(R.id.linearLayout);
 
@@ -121,6 +139,19 @@ public class ExprEvaluatorFragment extends Fragment {
         tvRes.setVisibility(View.GONE);
 
         return view;
+    }
+
+    private String getVars()
+    {
+        //using regex, get the left hand side of the = sign
+        //"x = pi, y = e" -> "x, y"
+        String vars = etVars.getText().toString().trim();
+        vars = vars.replaceAll(",", " , ");
+        vars = vars.replaceAll("=([a-zA-Z0-9_]*)", "");
+        vars = vars.trim();
+        vars = vars.replaceAll(" , ", ",");
+
+        return vars;
     }
 
     private void setSolveButtonState(boolean enabled, CharSequence message) {

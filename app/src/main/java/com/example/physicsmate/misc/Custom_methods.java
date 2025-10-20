@@ -42,10 +42,7 @@ import org.matheclipse.parser.client.SyntaxError;
 import org.matheclipse.parser.client.math.MathException;
 
 import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -619,8 +616,8 @@ public class Custom_methods {
 
     public static double evalDefiniteIntegral(String integral, double lowerBound, double upperBound, String var) {
 
-        double upperValue = evalAtPoint(integral, upperBound, var);
-        double lowerValue = evalAtPoint(integral, lowerBound, var);
+        double upperValue = evalAtPoint(integral, Collections.singletonList(upperBound), Collections.singletonList(var));
+        double lowerValue = evalAtPoint(integral, Collections.singletonList(lowerBound), Collections.singletonList(var));
         return upperValue - lowerValue;
 
     }
@@ -1071,33 +1068,22 @@ public class Custom_methods {
         }
     }
 
-    public static double evalAtPoint(@NotNull final String str, Double val, String variable) {
+    public static double evalAtPoint(@NotNull final String str, List<Double> vals, List<String> variables) {
         ExprEvaluator util = new ExprEvaluator(false, (short) 2);
-        try {
-            IExpr variableSetter = util.eval(variable + "=" + val);
-            return util.evalf(str);
-        } catch (SyntaxError e) {
-            // catch Symja parser errors here
-            String limVal = String.valueOf(util.evalf("Limit(" + str + ", " + variable + " -> " + val + ")"));
-            if (limVal.equals("Infinity") || limVal.equals("-Infinity") || limVal.equals("Indeterminate")) {
-                return 12.342;
-            }
-            return evalf(limVal);
-        } catch (MathException me) {
-            // catch Symja math errors here
-            String limVal = String.valueOf(util.evalf("Limit(" + str + ", " + variable + " -> " + val + ")"));
-            if (limVal.equals("Infinity") || limVal.equals("-Infinity") || limVal.equals("Indeterminate")) {
-                return 12.342;
-            }
-            return evalf(limVal);
-        } catch (Exception e) {
-            // catch other exceptions here
-            String limVal = String.valueOf(util.evalf("Limit(" + str + ", " + variable + " -> " + val + ")"));
-            if (limVal.equals("Infinity") || limVal.equals("-Infinity") || limVal.equals("Indeterminate")) {
-                return 12.342;
-            }
-            return evalf(limVal);
+        if(vals.size() != variables.size())
+        {
+            throw new RuntimeException();
         }
+        try {
+            for (int i = 0; i < vals.size(); i++)
+            {
+                util.eval(vals.get(i) + "=" + variables.get(i));
+            }
+            return util.evalf(str);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public static String evalAtPointXSymbolic(@NotNull final String str, CharSequence variable, Double val) {

@@ -26,6 +26,8 @@ import com.example.physicsmate.ui.CustomKeyboard;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static androidx.core.content.ContextCompat.getSystemService;
@@ -42,6 +44,10 @@ public class ExprEvaluatorFragment extends Fragment {
     EditText etVars, etFn;
     LinearLayout linear_layout;
     TextView tvRes;
+
+    List<String> LVars;
+    List<Double> LVals;
+    String varsAndVals, vars, vals;
 
     @Nullable
     @Override
@@ -65,22 +71,9 @@ public class ExprEvaluatorFragment extends Fragment {
         tvVars.setText("Enter the variables");
         tvFn.setText("Enter the function f(x, y)");
 
-        etVars.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                tvFn.setText("Enter the function f(" + getVars() + ")");
-            }
-        });
+        varsAndVals = etVars.getText().toString();
+        getVars(); //sets up vars
+        etVarsTCL(); //uses vars
 
         linear_layout = view.findViewById(R.id.linearLayout);
 
@@ -141,17 +134,57 @@ public class ExprEvaluatorFragment extends Fragment {
         return view;
     }
 
-    private String getVars()
+    private void etVarsTCL() {
+        etVars.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                getVars();
+                System.out.println("\n\nTCL: " + vars + "\n\n");
+                tvFn.setText("Enter the function f(" + vars + ")");
+            }
+        });
+    }
+
+    private void getVars()
     {
+        varsAndVals = etVars.getText().toString().trim();
+
+        System.out.println("\n\ngetVars varsAndVals: " + varsAndVals + "\n\n");
         //using regex, get the left hand side of the = sign
         //"x = pi, y = e" -> "x, y"
-        String vars = etVars.getText().toString().trim();
-        vars = vars.replaceAll(",", " , ");
+        vars = varsAndVals.replaceAll(",", " , ");
         vars = vars.replaceAll("=([a-zA-Z0-9_]*)", "");
         vars = vars.trim();
         vars = vars.replaceAll(" , ", ",");
 
-        return vars;
+        vals = varsAndVals.replaceAll(",", " , ");
+        vals = vals.replaceAll("([a-zA-Z0-9_]*)=", "");
+        vals = vals.trim();
+        vals = vals.replaceAll(" , ", ",");
+
+        System.out.println("\n\ngetVars vars: " + vars + "\n\n");
+        System.out.println("\n\ngetVars vals: " + vals + "\n\n");
+
+        LVars = new ArrayList<>();
+        LVals = new ArrayList<>();
+
+        String[] varsArray = vars.split(",");
+        Collections.addAll(LVars, varsArray);
+
+        String[] valsArray = vals.split(",");
+        for (String val : valsArray) {
+            LVals.add(evalf(val, false));
+        }
     }
 
     private void setSolveButtonState(boolean enabled, CharSequence message) {

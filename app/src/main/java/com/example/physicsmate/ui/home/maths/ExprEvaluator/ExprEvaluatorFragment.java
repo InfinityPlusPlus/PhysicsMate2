@@ -127,6 +127,13 @@ public class ExprEvaluatorFragment extends Fragment {
 
         btnCalc.setOnClickListener(v -> {
             customKeyboard.hideKeyboard();
+
+            String function = etFn.getText().toString();
+            double result = evalAtPoint(function, LVars, LVals);
+
+            tvRes.setText(Double.toString(result));
+            btnCopy.setVisibility(View.VISIBLE);
+            tvRes.setVisibility(View.VISIBLE);
         });
 
         tvRes.setVisibility(View.GONE);

@@ -616,8 +616,8 @@ public class Custom_methods {
 
     public static double evalDefiniteIntegral(String integral, double lowerBound, double upperBound, String var) {
 
-        double upperValue = evalAtPoint(integral, Collections.singletonList(upperBound), Collections.singletonList(var));
-        double lowerValue = evalAtPoint(integral, Collections.singletonList(lowerBound), Collections.singletonList(var));
+        double upperValue = evalAtPoint(integral, Collections.singletonList(var), Collections.singletonList(upperBound));
+        double lowerValue = evalAtPoint(integral, Collections.singletonList(var), Collections.singletonList(lowerBound));
         return upperValue - lowerValue;
 
     }
@@ -1068,16 +1068,16 @@ public class Custom_methods {
         }
     }
 
-    public static double evalAtPoint(@NotNull final String str, List<Double> vals, List<String> variables) {
-        ExprEvaluator util = new ExprEvaluator(false, (short) 2);
-        if(vals.size() != variables.size())
+    public static double evalAtPoint(@NotNull final String str, List<String> vars, List<Double> vals) {
+        ExprEvaluator util = new ExprEvaluator(false, (short) 200000);
+        if(vals.size() != vars.size())
         {
             throw new RuntimeException();
         }
         try {
             for (int i = 0; i < vals.size(); i++)
             {
-                util.eval(vals.get(i) + "=" + variables.get(i));
+                util.eval(vars.get(i) + "=" + vals.get(i));
             }
             return util.evalf(str);
         } catch (Exception e) {

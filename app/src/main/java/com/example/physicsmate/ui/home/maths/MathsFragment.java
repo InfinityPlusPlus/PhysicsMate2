@@ -28,7 +28,8 @@ public class MathsFragment extends Fragment {
 
         List<HomeTopic> homeTopicList = Arrays.asList(
                 new HomeTopic("Variable Solver", R.id.VarSolverFragment),
-                new HomeTopic("Expression Evaluator", R.id.ExprEvaluatorFragment)
+                new HomeTopic("Expression Evaluator", R.id.ExprEvaluatorFragment),
+                new HomeTopic("Integral Calculator", R.id.IntegralCalculatorFragment)
         );
 
         HomeTopicAdapter adapter = new HomeTopicAdapter(this, homeTopicList, true);

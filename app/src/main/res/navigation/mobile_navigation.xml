@@ -129,4 +129,10 @@
             android:label="Expression Evaluator"
             tools:layout="@layout/rv_fragment_blank" />
 
+    <fragment
+            android:id="@+id/IntegralCalculatorFragment"
+            android:name="com.example.physicsmate.ui.home.maths.IntegralCalculator.IntegralCalculatorFragment"
+            android:label="Integral Calculator"
+            tools:layout="@layout/rv_fragment_blank" />
+
 </navigation>

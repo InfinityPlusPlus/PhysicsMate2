@@ -354,6 +354,7 @@ public class IntegralCalculatorFragment extends Fragment {
                                 args.putString("DerInt", integral[0]);
                                 args.putFloat("minX", (float) evalf(minX.getText().toString().trim()));
                                 args.putFloat("maxX", (float) evalf(maxX.getText().toString().trim()));
+                                args.putString("var", StrInputVar);
                                 graphFragment.setArguments(args);
 
                                 requireActivity().getSupportFragmentManager()

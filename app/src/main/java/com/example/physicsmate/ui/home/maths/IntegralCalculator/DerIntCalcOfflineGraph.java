@@ -32,6 +32,7 @@ public class DerIntCalcOfflineGraph extends Fragment {
         String DerInt = args.getString("DerInt");
         float xmin = args.getFloat("minX", 0.1f);
         float xmax = args.getFloat("maxX", 50.0f);
+        String var = args.getString("var", "x");
 
         LineChart derCalcOffGraph = view.findViewById(R.id.lineChart);
 
@@ -39,11 +40,10 @@ public class DerIntCalcOfflineGraph extends Fragment {
         ArrayList<Entry> inputLineArray = new ArrayList<>();
         ArrayList<Entry> derLineArray = new ArrayList<>();
 
-
-        addArrayListEntries(input, xmin, xmax, inputLineArray);
+        addArrayListEntries(input, var, xmin, xmax, inputLineArray);
         //________________________________________________________________________
 
-        addArrayListEntries(DerInt, xmin, xmax, derLineArray);
+        addArrayListEntries(DerInt, var, xmin, xmax, derLineArray);
         //________________________________________________________________________
 
 

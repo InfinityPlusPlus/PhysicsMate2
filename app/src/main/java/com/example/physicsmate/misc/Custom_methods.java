@@ -1214,8 +1214,9 @@ public class Custom_methods {
     }
 
     @SafeVarargs
-    public static void addArrayListEntries(String input, float xmin, float xmax, ArrayList<Entry>... inputLineArrays) {
+    public static void addArrayListEntries(String input, String var, float xmin, float xmax, ArrayList<Entry>... inputLineArrays) {
 
+        input = input.replace(var, "x");
 
         for (ArrayList<Entry> inputLineArray : inputLineArrays) {
 
@@ -1226,8 +1227,9 @@ public class Custom_methods {
 
             for (float lineChartX = xmin; lineChartX < xmax; lineChartX = lineChartX + ((xmax - xmin) / 100)) {
                 float finalLineChartX = lineChartX;
+                String finalInput = input;
                 executor.submit(() -> {
-                    Entry entry = new Entry(finalLineChartX, (float) evalAtPointX(input, (double) finalLineChartX));
+                    Entry entry = new Entry(finalLineChartX, (float) evalAtPointX(finalInput, (double) finalLineChartX));
                     synchronized (inputLineArray) {
                         //add entry to the array only if y is not equal to 12.342 +- 0.01 or if x != 0
                         if (Math.abs(entry.getY() - 12.342) > 0.01 || Math.abs(entry.getX()) > 0.009) {

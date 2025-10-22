@@ -1,4 +1,4 @@
-package com.example.physicsmate.ui.home.maths.IntegralCalculator;
+package com.example.physicsmate.ui.home.maths.DerivativeIntegralCalculator;
 
 import android.graphics.Color;
 import android.os.Bundle;

@@ -131,13 +131,19 @@
 
     <fragment
             android:id="@+id/IntegralCalculatorFragment"
-            android:name="com.example.physicsmate.ui.home.maths.IntegralCalculator.IntegralCalculatorFragment"
+            android:name="com.example.physicsmate.ui.home.maths.DerivativeIntegralCalculator.IntegralCalculatorFragment"
             android:label="Integral Calculator"
             tools:layout="@layout/rv_fragment_blank" />
 
     <fragment
+            android:id="@+id/DerivativeCalculatorFragment"
+            android:name="com.example.physicsmate.ui.home.maths.DerivativeIntegralCalculator.DerivativeCalculatorFragment"
+            android:label="Derivative Calculator"
+            tools:layout="@layout/rv_fragment_blank" />
+
+    <fragment
             android:id="@+id/DerIntCalcOfflineGraph"
-            android:name="com.example.physicsmate.ui.home.maths.IntegralCalculator.DerIntCalcOfflineGraph"
+            android:name="com.example.physicsmate.ui.home.maths.DerivativeIntegralCalculator.DerIntCalcOfflineGraph"
             android:label="Integral Calculator"
             tools:layout="@layout/line_chart_universal" />
 

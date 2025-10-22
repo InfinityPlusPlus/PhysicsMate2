@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/derIntSymjaSV">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/derIntLL"
+            android:orientation="vertical">
+
+        <TextView
+                android:text="Enter the function to differentiate"
+                android:layout_marginTop="45dp"
+                style="@style/custom_textView"
+                android:id="@+id/DerInttv1"
+        />
+
+        <EditText
+                android:id="@+id/input_function"
+                android:hint="(3x*cos(x))^(2*ln(x))"
+                style="@style/custom_edittext"
+                android:inputType="text"
+                android:minHeight="48dp"/>
+
+        <com.agog.mathdisplay.MTMathView
+                style="@style/custom_mathJaxView"
+                android:id="@+id/latexView1"/>
+
+
+        <TextView
+                android:text="Enter the differentiating variable"
+                style="@style/custom_textView"
+                android:id="@+id/DerInttv2"
+
+        />
+
+        <EditText
+                android:id="@+id/input_var"
+                android:hint="x"
+                style="@style/custom_edittext"
+                android:inputType="text"
+                android:digits="qwertyuioasdfghjklzxcvbnm"
+                android:minHeight="48dp"/>
+
+        <TextView
+                android:text="Number of times to differentiate"
+                style="@style/custom_textView"
+                android:id="@+id/DerInttv3"
+
+        />
+
+        <EditText
+                android:id="@+id/nth_der"
+                android:hint="1"
+                style="@style/custom_edittext"
+                android:minHeight="48dp"/>
+
+
+        <CheckBox
+                style="@style/custom_checkBox"
+                android:layout_gravity="center"
+                android:text="Definite integral"
+                android:id="@+id/checkBox6"/>
+
+        <TextView
+                style="@style/custom_textView"
+                android:text="Upper bound of integral"
+                android:id="@+id/tvUpperBound">
+        </TextView>
+        <EditText
+                style="@style/custom_edittext"
+                android:id="@+id/etUpperBound"
+                android:hint="1"/>
+        <TextView
+                style="@style/custom_textView"
+                android:text="Lower bound of integral"
+                android:id="@+id/tvLowerBound">
+        </TextView>
+        <EditText
+                style="@style/custom_edittext"
+                android:id="@+id/etLowerBound"
+                android:hint="0"/>
+        <CheckBox
+                style="@style/custom_checkBox"
+                android:layout_gravity="center"
+                android:text="Numeric evaluation"
+                android:id="@+id/checkBox7">
+
+        </CheckBox>
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/calculate_derivative"
+                android:text="Calculate Derivative"
+                style="@style/custom_button_enabled"
+        />
+
+        <com.agog.mathdisplay.MTMathView
+                style="@style/custom_mathJaxView"
+                android:id="@+id/latexView2"/>
+
+        <TextView
+                style = "@style/custom_textView"
+                android:text="Area under curve"
+                android:id="@+id/textView18"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+                style = "@style/custom_button_enabled"
+                android:text="Copy to clipboard"
+                android:id="@+id/button3"/>
+        <TextView
+                android:id="@+id/result"
+                android:text="Result"
+                style="@style/custom_textView"
+        />
+
+
+        <TextView
+                android:id="@+id/simp_result"
+                android:text="Simplified form"
+                style="@style/custom_textView"
+                android:layout_marginBottom="0dp"
+        />
+
+
+        <com.agog.mathdisplay.MTMathView
+                style="@style/custom_mathJaxView"
+                android:id="@+id/latexView3"/>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+                style="@style/custom_button_enabled"
+                android:text="Copy to clipboard"
+                android:id="@+id/btnCopy"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnGraphInfo"
+                android:text="Get Graph"
+                style="@style/custom_button_enabled"
+        />
+
+        <TextView
+                style="@style/custom_textView"
+                android:text="Enter minimum value of 'x'"
+                android:id="@+id/derInttvMin"/>
+
+        <EditText
+                style="@style/custom_edittext"
+                android:id="@+id/etXMinDerInt"
+                android:hint="-10"/>
+
+        <TextView
+                style="@style/custom_textView"
+                android:text="Enter maximum value of 'x'"
+                android:id="@+id/derInttvMax"/>
+
+        <EditText
+                style="@style/custom_edittext"
+                android:id="@+id/etXMaxDerInt"
+                android:hint="10"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/custom_button_enabled"
+                android:text="Next"
+                android:id="@+id/btnGraph"/>
+
+    </LinearLayout>
+</ScrollView>

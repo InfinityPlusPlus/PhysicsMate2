@@ -269,35 +269,35 @@ public class IntegralCalculatorFragment extends Fragment {
             });
 
 
-//            btnGraphInfo.setOnClickListener(v12 ->
-//            {
-//                customKeyboard.hideKeyboard();
-//                derInttvMax.setVisibility(View.VISIBLE);
-//                derInttvMin.setVisibility(View.VISIBLE);
-//                minX.setVisibility(View.VISIBLE);
-//                maxX.setVisibility(View.VISIBLE);
-//                btnGraph.setVisibility(View.VISIBLE);
-//
-//                //create a toast to display message that smaller ranges will give more  accurate graph
-//                Toast.makeText(getContext(), "Smaller ranges will give more accurate graph", Toast.LENGTH_SHORT).show();
-//
-//                sv.post(() -> sv.smoothScrollTo(0, btnGraph.getBottom()));
-//
-//                btnGraph.setOnClickListener(v1 -> {
-//                    customKeyboard.hideKeyboard();
-//                    if (minX.getText().toString().trim().isEmpty() || maxX.getText().toString().trim().isEmpty()) {
-//                        Toast.makeText(getContext(), "Please enter a valid range", Toast.LENGTH_SHORT).show();
-//                    } else {
-//                        Intent intent = new Intent(requireContext(), DerIntCalcOfflineGraph.class);
-//                        intent.putExtra("input", function);
-//                        intent.putExtra("DerInt", integral[0]);
-//                        intent.putExtra("minX", evalf(minX.getText().toString().trim()));
-//                        intent.putExtra("maxX", evalf(maxX.getText().toString().trim()));
-//                        startActivity(intent);
-//                    }
-//
-//                });
-//            });
+            btnGraphInfo.setOnClickListener(v12 ->
+            {
+                customKeyboard.hideKeyboard();
+                derInttvMax.setVisibility(View.VISIBLE);
+                derInttvMin.setVisibility(View.VISIBLE);
+                minX.setVisibility(View.VISIBLE);
+                maxX.setVisibility(View.VISIBLE);
+                btnGraph.setVisibility(View.VISIBLE);
+
+                //create a toast to display message that smaller ranges will give more  accurate graph
+                Toast.makeText(getContext(), "Smaller ranges will give more accurate graph", Toast.LENGTH_SHORT).show();
+
+                sv.post(() -> sv.smoothScrollTo(0, btnGraph.getBottom()));
+
+                btnGraph.setOnClickListener(v1 -> {
+                    customKeyboard.hideKeyboard();
+                    if (minX.getText().toString().trim().isEmpty() || maxX.getText().toString().trim().isEmpty()) {
+                        Toast.makeText(getContext(), "Please enter a valid range", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Intent intent = new Intent(requireContext(), DerIntCalcOfflineGraph.class);
+                        intent.putExtra("input", function);
+                        intent.putExtra("DerInt", integral[0]);
+                        intent.putExtra("minX", evalf(minX.getText().toString().trim()));
+                        intent.putExtra("maxX", evalf(maxX.getText().toString().trim()));
+                        startActivity(intent);
+                    }
+
+                });
+            });
 
             // Execute simplification in a separate thread
             new Thread(() -> {
@@ -341,20 +341,29 @@ public class IntegralCalculatorFragment extends Fragment {
                         Toast.makeText(getContext(), "Smaller ranges will give more accurate graph", Toast.LENGTH_SHORT).show();
 
 
-//                        btnGraph.setOnClickListener(v1 -> {
-//                            customKeyboard.hideKeyboard();
-//                            if (minX.getText().toString().trim().isEmpty() || maxX.getText().toString().trim().isEmpty()) {
-//                                Toast.makeText(getContext(), "Please enter a valid range", Toast.LENGTH_SHORT).show();
-//                            } else {
-//                                Intent intent = new Intent(requireContext(), DerIntCalcOfflineGraph.class);
-//                                intent.putExtra("input", function);
-//                                intent.putExtra("DerInt", integral[0]);
-//                                intent.putExtra("minX", evalf(minX.getText().toString().trim()));
-//                                intent.putExtra("maxX", evalf(maxX.getText().toString().trim()));
-//                                startActivity(intent);
-//                            }
-//
-//                        });
+                        btnGraph.setOnClickListener(v1 -> {
+                            customKeyboard.hideKeyboard();
+
+                            if (minX.getText().toString().trim().isEmpty() || maxX.getText().toString().trim().isEmpty()) {
+                                Toast.makeText(getContext(), "Please enter a valid range", Toast.LENGTH_SHORT).show();
+                            } else {
+                                DerIntCalcOfflineGraph graphFragment = new DerIntCalcOfflineGraph();
+
+                                Bundle args = new Bundle();
+                                args.putString("input", function);
+                                args.putString("DerInt", integral[0]);
+                                args.putFloat("minX", (float) evalf(minX.getText().toString().trim()));
+                                args.putFloat("maxX", (float) evalf(maxX.getText().toString().trim()));
+                                graphFragment.setArguments(args);
+
+                                requireActivity().getSupportFragmentManager()
+                                        .beginTransaction()
+                                        .replace(R.id.cl_content_main, graphFragment) // Use your host container ID
+                                        .addToBackStack(null)
+                                        .commit();
+                            }
+                        });
+
                     });
                 });
             }).start();

@@ -52,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
         //link with the keyboard
         ConstraintLayout cl = findViewById(R.id.cl_content_main);
-        keyboard = new CustomKeyboard(this, null);
-        cl.addView(keyboard);
+//        keyboard = new CustomKeyboard(this, null);
+//        cl.addView(keyboard);
         cl.post(() -> {
             keyboard = new CustomKeyboard(this, null);
             cl.addView(keyboard);
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override public void onBackPressed () {
             if (keyboard != null && keyboard.getVisibility() == View.VISIBLE) {
-                keyboard.setVisibility(View.GONE);
+                keyboard.hideKeyboard();
                 if (linkedScrollView != null) {
                     linkedScrollView.setPadding(0, 0, 0, 0);
                 }

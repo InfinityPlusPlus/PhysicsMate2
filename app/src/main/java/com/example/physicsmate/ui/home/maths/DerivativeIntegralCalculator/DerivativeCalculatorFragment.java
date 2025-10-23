@@ -17,16 +17,18 @@ import com.airbnb.paris.Paris;
 import com.example.physicsmate.R;
 import com.example.physicsmate.ui.CustomKeyboard;
 
+import java.util.Objects;
+
 import static androidx.core.content.ContextCompat.getSystemService;
 import static com.example.physicsmate.misc.Custom_methods.*;
 import static com.example.physicsmate.misc.MainActivity.getKeyboard;
 
 public class DerivativeCalculatorFragment extends Fragment {
 
-    CustomKeyboard customKeyboard = getKeyboard();
+    CustomKeyboard customKeyboard;
     EditText inputFunction, inputVar, nthDer, minX, maxX, etLowerBound, etUpperBound;
     CheckBox cbDefiniteIntegral, cbNumericEvaluation;
-    TextView result, simpResult, derInttvMax, derInttvMin, DerInttv3, DerInttv2, DerInttv1, tvLowerBound, tvUpperBound;
+    TextView tvArea, result, simpResult, derInttvMax, derInttvMin, DerInttv3, DerInttv2, DerInttv1, tvLowerBound, tvUpperBound;
     MTMathView latexView1, latexView2, latexView3;
     LinearLayout derIntLL;
 
@@ -67,6 +69,7 @@ public class DerivativeCalculatorFragment extends Fragment {
         etUpperBound = view.findViewById(R.id.etUpperBound);
         tvLowerBound = view.findViewById(R.id.tvLowerBound);
         tvUpperBound = view.findViewById(R.id.tvUpperBound);
+        tvArea = view.findViewById(R.id.textView18);
 
         cbDefiniteIntegral = view.findViewById(R.id.checkBox6);
         cbNumericEvaluation = view.findViewById(R.id.checkBox7);
@@ -79,6 +82,7 @@ public class DerivativeCalculatorFragment extends Fragment {
         derInttvMin.setVisibility(View.GONE);
         tvLowerBound.setVisibility(View.GONE);
         tvUpperBound.setVisibility(View.GONE);
+        tvArea.setVisibility(View.GONE);
 
         setClickability();
 
@@ -167,6 +171,10 @@ public class DerivativeCalculatorFragment extends Fragment {
                 @Override
                 public void afterTextChanged(Editable s) {
                     setClickability();
+                    hideKeyboardOnClick(btnCopy, requireContext());
+                    hideKeyboardOnClick(calculateDerivative, requireContext());
+                    hideKeyboardOnClick(btnGraph, requireContext());
+                    hideKeyboardOnClick(btnGraphInfo, requireContext());
                     //result, simp_result and textView18 are cleared
                     result.setVisibility(View.GONE);
                     simpResult.setVisibility(View.GONE);
@@ -186,7 +194,7 @@ public class DerivativeCalculatorFragment extends Fragment {
 
         calculateDerivative.setOnClickListener(v ->
         {
-            hideKeyboardOnClick(calculateDerivative, requireContext());
+            //hideKeyboardOnClick(calculateDerivative, requireContext());
             customKeyboard.hideKeyboard();
 
             String function = inputFunction.getText().toString().trim();

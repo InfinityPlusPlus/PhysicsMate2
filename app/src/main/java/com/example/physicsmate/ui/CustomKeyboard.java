@@ -269,10 +269,10 @@ public class CustomKeyboard extends LinearLayout {
     }
 
     public void hideKeyboard() {
+        setVisibility(View.GONE);
         if (scrollView != null) {
             scrollView.setPadding(0, 0, 0, 0);
         }
-        setVisibility(View.GONE);
     }
 
     private void insertText(CharSequence text) {

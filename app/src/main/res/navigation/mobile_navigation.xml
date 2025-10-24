@@ -147,4 +147,10 @@
             android:label="Integral Calculator"
             tools:layout="@layout/line_chart_universal" />
 
+    <fragment
+            android:id="@+id/OrthonormalisationFragment"
+            android:name="com.example.physicsmate.ui.home.maths.Orthonormalisation.OrthonormalisationFragment"
+            android:label="Orthonormalisation"
+            tools:layout="@layout/activity_orthonormalisation" />
+
 </navigation>

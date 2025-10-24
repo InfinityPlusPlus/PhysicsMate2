@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/orthonormalisation_scrollview"
+>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/orthonormalisation_LL"
+            android:padding="16dp">
+
+        <TextView
+                android:text="Enter the dimension of the vector space:"
+                style="@style/custom_textView"/>
+
+        <EditText
+                android:id="@+id/orthonormalisation_dim"
+                style="@style/custom_integer_edittext"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/orthonormalisation_btn"
+                style="@style/custom_button_enabled"
+                android:text="next"/>
+
+        <!-- Placeholder for dynamically added vector input fields -->
+        <LinearLayout
+                android:id="@+id/vectorsContainer"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+                style="@style/custom_button_enabled"
+                android:text="orthonormalise vectors"
+                android:id="@+id/btnCalc"/>
+
+        <TextView
+                style="@style/custom_textView"
+                android:id="@+id/tvRes"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+                style="@style/custom_button_enabled"
+                android:text="Copy to clipboard"
+                android:id="@+id/btnCopy"/>
+
+    </LinearLayout>
+</ScrollView>

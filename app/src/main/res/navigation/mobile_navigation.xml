@@ -153,4 +153,10 @@
             android:label="Orthonormalisation"
             tools:layout="@layout/activity_orthonormalisation" />
 
+    <fragment
+            android:id="@+id/VEAddFragment"
+            android:name="com.example.physicsmate.ui.home.maths.VEAdd.VEAddFragment"
+            android:label="Vector Addition"
+            tools:layout="@layout/rv_fragment_blank" />
+
 </navigation>

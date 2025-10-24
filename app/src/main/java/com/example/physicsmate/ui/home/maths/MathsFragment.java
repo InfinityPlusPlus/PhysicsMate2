@@ -31,7 +31,8 @@ public class MathsFragment extends Fragment {
                 new HomeTopic("Expression Evaluator", R.id.ExprEvaluatorFragment),
                 new HomeTopic("Integral Calculator", R.id.IntegralCalculatorFragment),
                 new HomeTopic("Derivative Calculator", R.id.DerivativeCalculatorFragment),
-                new HomeTopic("Orthonormalisation", R.id.OrthonormalisationFragment)
+                new HomeTopic("Orthonormalisation", R.id.OrthonormalisationFragment),
+                new HomeTopic("Vector Addition", R.id.VEAddFragment)
         );
 
         HomeTopicAdapter adapter = new HomeTopicAdapter(this, homeTopicList, true);

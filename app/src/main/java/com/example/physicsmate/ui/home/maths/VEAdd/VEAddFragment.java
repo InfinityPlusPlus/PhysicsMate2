@@ -42,9 +42,53 @@ public class VEAddFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        view = inflater.inflate(R.layout.activity_orthonormalisation, container, false);
+        view = inflater.inflate(R.layout.sv_ll_fragment_blank, container, false);
+
+        LinearLayout ll = view.findViewById(R.id.linearLayout);
+
+        TextView tv1 = new TextView(getContext());
+        tv1.setText("Enter the number of vectors to add");
+
+        EditText et1 = new EditText(getContext());
+        et1.setHint("3");
+
+        Button btn1 = new Button(getContext());
+        btn1.setText("Cartesian");
+
+        Button btn2 = new Button(getContext());
+        btn2.setText("Polar");
+
+        Button btn3 = new Button(getContext());
+        btn3.setText("Polar (Direction cosines)");
+
+        Paris.styleBuilder(tv1).add(R.style.custom_textView).apply();
+        Paris.styleBuilder(et1).add(R.style.custom_edittext).apply();
+        Paris.styleBuilder(btn1).add(R.style.custom_button_enabled).apply();
+        Paris.styleBuilder(btn2).add(R.style.custom_button_enabled).apply();
+        Paris.styleBuilder(btn3).add(R.style.custom_button_enabled).apply();
+
+        ll.addView(tv1, 0);
+        ll.addView(et1, 1);
+        ll.addView(btn1, 2);
+        ll.addView(btn2, 3);
+        ll.addView(btn3, 4);
+
+        setupEditTextChangeListener(null, btn1, null, et1);
+        setupEditTextChangeListener(null, btn2, null, et1);
+        setupEditTextChangeListener(null, btn3, null, et1);
+
+        btn1.setOnClickListener(v -> {
 
 
+        });
+
+        btn2.setOnClickListener(v -> {
+
+        });
+
+        btn3.setOnClickListener(v -> {
+
+        });
 
         return view;
     }

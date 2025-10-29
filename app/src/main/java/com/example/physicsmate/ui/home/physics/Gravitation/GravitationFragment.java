@@ -20,7 +20,7 @@ import java.util.List;
 public class GravitationFragment extends Fragment {
 
     static final float fontSize = 72.f;
-    protected static CustomKeyboard customKeyboard;
+    public static CustomKeyboard customKeyboard;
     protected static ScrollView sv;
 
     @Nullable

@@ -756,8 +756,10 @@ public class Custom_methods {
 
                 @Override
                 public void afterTextChanged(Editable editable) {
-                    for (View view : viewsToDisappear) {
-                        view.setVisibility(View.GONE);
+                    if (viewsToDisappear != null) {
+                        for (View view : viewsToDisappear) {
+                            view.setVisibility(View.GONE);
+                        }
                     }
 
                     // Check if any of the EditTexts are empty
@@ -1070,13 +1072,11 @@ public class Custom_methods {
 
     public static double evalAtPoint(@NotNull final String str, List<String> vars, List<Double> vals) {
         ExprEvaluator util = new ExprEvaluator(false, (short) 200000);
-        if(vals.size() != vars.size())
-        {
+        if (vals.size() != vars.size()) {
             throw new RuntimeException();
         }
         try {
-            for (int i = 0; i < vals.size(); i++)
-            {
+            for (int i = 0; i < vals.size(); i++) {
                 util.eval(vars.get(i) + "=" + vals.get(i));
             }
             return util.evalf(str);

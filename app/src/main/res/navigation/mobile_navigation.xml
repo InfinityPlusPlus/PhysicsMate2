@@ -159,4 +159,22 @@
             android:label="Vector Addition"
             tools:layout="@layout/rv_fragment_blank" />
 
+    <fragment
+            android:id="@+id/VEAddCartesianFragment"
+            android:name="com.example.physicsmate.ui.home.maths.VEAdd.Cartesian"
+            android:label="Cartesian"
+            tools:layout="@layout/rv_fragment_blank" />
+
+    <fragment
+            android:id="@+id/VEAddPolarFragment"
+            android:name="com.example.physicsmate.ui.home.maths.VEAdd.Polar"
+            android:label="Polar"
+            tools:layout="@layout/rv_fragment_blank" />
+
+    <fragment
+            android:id="@+id/VEAddPolarDirectionCosinesFragment"
+            android:name="com.example.physicsmate.ui.home.maths.VEAdd.PolarDirectionCosines"
+            android:label="Polar Direction Cosines"
+            tools:layout="@layout/rv_fragment_blank" />
+
 </navigation>

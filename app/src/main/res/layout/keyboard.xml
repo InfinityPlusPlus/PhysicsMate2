@@ -9,7 +9,11 @@
         android:gravity="center"
         android:background="@color/darker_grey"
         android:id="@+id/keyboard_layout"
->
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:descendantFocusability="afterDescendants"
+        android:elevation="8dp">        <!-- Helps ensure it’s on top -->
 
     <!-- Top operator bar -->
     <HorizontalScrollView

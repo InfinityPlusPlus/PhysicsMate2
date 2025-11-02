@@ -33,6 +33,7 @@ public class CustomKeyboard extends LinearLayout {
     public static final double gas_constant = 8.31446261815324;
     private EditText targetEditText;
     private View scrollView;
+    private CustomKeyboard customKeyboard;
     LinearLayout keyboard_layout, keyboard_tab_bar;
     ConstraintLayout keyboard_main_layout;
     FlexboxLayout keyboard_content;
@@ -269,6 +270,9 @@ public class CustomKeyboard extends LinearLayout {
     }
 
     public void hideKeyboard() {
+        bringToFront();
+        requestLayout();
+        invalidate();
         setVisibility(View.GONE);
         if (scrollView != null) {
             scrollView.setPadding(0, 0, 0, 0);

@@ -720,13 +720,6 @@ public class Custom_methods {
         }
     }
 
-    public static void keyboardSetter(CustomKeyboard customKeyboard) {
-        customKeyboard.bringToFront();
-        customKeyboard.requestLayout();
-        customKeyboard.invalidate();
-        customKeyboard.hideKeyboard();
-    }
-
     public static void setupEditTextChangeListener(View[] viewsToDisappear, Button btnCalc, CustomKeyboard custom_keyboard, EditText... editTexts) {
 
         // Check if any of the EditTexts are empty

@@ -72,7 +72,7 @@ public class Cartesian extends VEAddFragment {
         viewCartesian.post(() -> {
             customKeyboard = getKeyboard();
             if (customKeyboard != null) {
-                keyboardSetter(customKeyboard);
+                customKeyboard.hideKeyboard();
                 setupEditTextForCustomKeyboard(customKeyboard, sv, editTextList);
                 setupEditTextChangeListener(viewsToDisappear, btnCalc, customKeyboard, Arrays.asList(editTextList));
             }
@@ -139,7 +139,6 @@ public class Cartesian extends VEAddFragment {
 
         return viewCartesian;
     }
-
 
 
     public void copyToClipboard(CharSequence string) {

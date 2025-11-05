@@ -200,6 +200,24 @@ public class Custom_methods {
         }
     }
 
+    //round to nearest integer
+    public static int evalfInt(@NotNull String str) {
+        ExprEvaluator util = new ExprEvaluator();
+        str = str.replaceAll("\\b(\\d+(?:\\.\\d+)?)[eE]([+-]?\\d+)\\b", "$1 * 10^$2");
+        str = str.replaceAll("log10\\((.*?)\\)", "ln($1)/ln(10)");
+        str = str.replaceAll("phi", phiString);
+        str = str.replaceAll("π", "Pi");
+        str = str.replaceAll(",", "");
+        str = str.replace("e", eString);
+        try {
+            String temp = String.valueOf(util.eval(IExprConverter(str)));
+            return Integer.parseInt(temp);
+
+        } catch (MathException e) {
+            return 0;
+        }
+    }
+
     public static double evalf(@NotNull String str, boolean isComma) {
 
         ExprEvaluator util = new ExprEvaluator();

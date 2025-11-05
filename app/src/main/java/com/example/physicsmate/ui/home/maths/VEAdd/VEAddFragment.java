@@ -62,7 +62,7 @@ public class VEAddFragment extends Fragment {
             Cartesian cart = new Cartesian();
 
             Bundle args = new Bundle();
-            args.putString("num", String.valueOf(evalf(et1.getText().toString().trim())));
+            args.putInt("num", evalfInt(et1.getText().toString().trim()));
             cart.setArguments(args);
 
             requireActivity().getSupportFragmentManager()
@@ -76,7 +76,8 @@ public class VEAddFragment extends Fragment {
             Polar polar = new Polar();
 
             Bundle args = new Bundle();
-            args.putInt("num", Integer.parseInt(String.valueOf(evalf(et1.getText().toString().trim()))));
+            args.putInt("num", evalfInt(et1.getText().toString().trim()));
+            System.out.println("\n\n" + args.getInt("num") + "\n\n");
             polar.setArguments(args);
 
             requireActivity().getSupportFragmentManager()
@@ -91,7 +92,7 @@ public class VEAddFragment extends Fragment {
             PolarDirectionCosines polDirCos = new PolarDirectionCosines();
 
             Bundle args = new Bundle();
-            args.putString("num", String.valueOf(evalf(et1.getText().toString().trim())));
+            args.putInt("num", evalfInt(et1.getText().toString().trim()));
             polDirCos.setArguments(args);
 
             requireActivity().getSupportFragmentManager()

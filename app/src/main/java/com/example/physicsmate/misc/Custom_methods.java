@@ -447,7 +447,7 @@ public class Custom_methods {
         double r = evalf(polarComponents[0].trim()); // Magnitude
         double[] angles = new double[n - 1];
         for (int i = 1; i < n; i++) {
-            angles[i - 1] = evalf(polarComponents[i].trim()); // Angle is given in radians
+            angles[i - 1] = Math.toRadians(evalf(polarComponents[i].trim())); // Angle is given in degrees
         }
 
         // Compute Cartesian coordinates

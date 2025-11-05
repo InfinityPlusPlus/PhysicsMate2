@@ -100,7 +100,7 @@ public class Polar extends Fragment {
 
         TextView tvHelp = new TextView(requireContext());
         Paris.styleBuilder(tvHelp).add(R.style.custom_textViewSmallNotice).apply();
-        tvHelp.setText("Use the format (r, theta1, theta2, ..., theta(n-1)) [for n-dimensional vectors], where theta is in radians. \n\n the theta1 angle is measured from the vector to x1 axis. theta2, theta3, ... theta(n-1) are measured from the projection of vector to x2-x3, x4-x5, ... x(n-1)-xn planes from the x2, x3, ... x(n-1) axes.");
+        tvHelp.setText("Use the format (r, theta1, theta2, ..., theta(n-1)) [for n-dimensional vectors], where theta is in degrees. \n\n the theta1 angle is measured from the vector to x1 axis. theta2, theta3, ... theta(n-1) are measured from the projection of vector to x2-x3, x4-x5, ... x(n-1)-xn planes from the x2, x3, ... x(n-1) axes.");
         linearLayout.addView(tvHelp, 1);
 
         AtomicReference<Double> scalarSum = new AtomicReference<>((double) 0);

@@ -238,14 +238,14 @@ public class CustomKeyboard extends LinearLayout {
         Button addition = findViewById(R.id.buttonPlus);
         addition.setText(Html.fromHtml("+ <sub>(</sub>", Html.FROM_HTML_MODE_LEGACY));
         addition.setOnLongClickListener(v -> {
-            insertText(" ( ");
+            insertText("(");
             return true;
         });
 
         Button subtraction = findViewById(R.id.buttonMinus);
         subtraction.setText(Html.fromHtml("- <sub>)</sub>", Html.FROM_HTML_MODE_LEGACY));
         subtraction.setOnLongClickListener(v -> {
-            insertText(" ) ");
+            insertText(")");
             return true;
         });
     }

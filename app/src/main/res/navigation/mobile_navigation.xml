@@ -177,4 +177,10 @@
             android:label="Polar Direction Cosines"
             tools:layout="@layout/rv_fragment_blank" />
 
+    <fragment
+        android:id="@+id/EigenDFragment"
+        android:name="com.example.physicsmate.ui.home.maths.EigenD.EigenDFragment"
+        android:label="Eigenvalues, Eigenvectors &amp; Diagonalisation"
+        tools:layout="@layout/rv_fragment_blank" />
+
 </navigation>

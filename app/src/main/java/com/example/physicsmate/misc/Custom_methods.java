@@ -658,6 +658,81 @@ public class Custom_methods {
         //return util.eval("Simplify(ReplaceAll(" + expanded + ", {log(x_)+log(y_) -> log(x*y), log(x_)-log(y_) -> log(x/y), log(x_^y_) -> y*log(x_)}))").toString();
     }
 
+    public static double[] eigenVals(double[][] matrix) {
+        int n = matrix.length;
+        double[] eigenvalues = new double[n];
+        ExprEvaluator util = new ExprEvaluator();
+        StringBuilder matrixStr = new StringBuilder("{{");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                matrixStr.append(matrix[i][j]);
+                if (j < n - 1) {
+                    matrixStr.append(", ");
+                }
+            }
+            if (i < n - 1) {
+                matrixStr.append("}, {");
+            }
+        }
+        matrixStr.append("}}");
+
+        IExpr EigenVal = util.eval("Eigenvalues(" + matrixStr + ")");
+        for (int i = 0; i < n; i++) {
+            eigenvalues[i] = util.evalf(EigenVal.getAt(i + 1).toString());
+        }
+
+        return eigenvalues;
+    }
+
+    public static double[][] eigenVecs(double[][] matrix) {
+        int n = matrix.length;
+        double[][] eigenvectors = new double[n][n];
+        ExprEvaluator util = new ExprEvaluator();
+        StringBuilder matrixStr = new StringBuilder("{{");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                matrixStr.append(matrix[i][j]);
+                if (j < n - 1) {
+                    matrixStr.append(", ");
+                }
+            }
+            if (i < n - 1) {
+                matrixStr.append("}, {");
+            }
+        }
+        matrixStr.append("}}");
+
+        IExpr EigenVec = util.eval("Eigenvectors(" + matrixStr + ")");
+        for (int i = 0; i < n; i++) {
+            IExpr vec = EigenVec.getAt(i + 1);
+            for (int j = 0; j < n; j++) {
+                eigenvectors[i][j] = util.evalf(vec.getAt(j + 1).toString());
+            }
+        }
+
+        return eigenvectors;
+    }
+
+    //normalized eigenvectors
+    public static double[][] normalizedEigenVecs(double[][] matrix) {
+        double[][] eigenvectors = eigenVecs(matrix);
+        int n = eigenvectors.length;
+
+        for (int i = 0; i < n; i++) {
+            double norm = 0.0;
+            for (int j = 0; j < n; j++) {
+                norm += eigenvectors[i][j] * eigenvectors[i][j];
+            }
+            norm = Math.sqrt(norm);
+
+            for (int j = 0; j < n; j++) {
+                eigenvectors[i][j] /= norm;
+            }
+        }
+
+        return eigenvectors;
+    }
+
 
     public static double mod(double dividend, double divisor) {
         return dividend - divisor * Math.floor(dividend / divisor);

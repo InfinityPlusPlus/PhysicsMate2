@@ -1,6 +1,7 @@
 package com.example.physicsmate.ui.home.maths.EigenD;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +13,9 @@ import androidx.fragment.app.Fragment;
 import com.example.physicsmate.R;
 import com.example.physicsmate.ui.CustomKeyboard;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReferenceArray;
 
 import static com.example.physicsmate.misc.Custom_methods.*;
 import static com.example.physicsmate.misc.MainActivity.getKeyboard;
@@ -60,7 +60,7 @@ public class EigenDFragment extends Fragment {
         ll.addView(btnCalc);
         btnCalc.setVisibility(View.GONE);
 
-        List<EditText> editTextList = Collections.emptyList();
+        List<EditText> editTextList = new ArrayList<>();
 
         btnNext.setOnClickListener(view ->
         {
@@ -105,7 +105,10 @@ public class EigenDFragment extends Fragment {
                 }
             }
 
-            tvRes.setText("replace with eigenvalue and eigenvector calculation result");
+            double[] eigenvalues = eigenVals(matrix);
+            double[][] normalizedEigenVecs = normalizedEigenVecs(matrix);
+
+            tvRes.setText(Html.fromHtml(HtmlNumberFormatter(requireContext(), "Eigenvalues:<br>" + Arrays.toString(eigenvalues) + "<br><br>Normalized Eigenvectors:<br>" + Arrays.deepToString(normalizedEigenVecs)), Html.FROM_HTML_MODE_LEGACY));
             tvRes.setVisibility(View.VISIBLE);
             sv.post(() -> sv.smoothScrollTo(0, tvRes.getBottom()));
         });

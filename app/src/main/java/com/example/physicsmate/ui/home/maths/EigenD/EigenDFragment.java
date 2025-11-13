@@ -1,8 +1,10 @@
 package com.example.physicsmate.ui.home.maths.EigenD;
 
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Html;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import com.airbnb.paris.Paris;
 import com.example.physicsmate.R;
 import com.example.physicsmate.ui.CustomKeyboard;
 
@@ -38,25 +41,34 @@ public class EigenDFragment extends Fragment {
         ll = view.findViewById(R.id.linearLayout);
 
         TextView tv = new TextView(getContext());
+        Paris.styleBuilder(tv).add(R.style.custom_textView).apply();
         tv.setText("Enter the dimension of the square matrix");
         ll.addView(tv);
+
         EditText etDim = new EditText(getContext());
         etDim.setInputType(InputType.TYPE_CLASS_NUMBER);
         etDim.setHint("3");
+        Paris.styleBuilder(etDim).add(R.style.custom_edittext).apply();
         ll.addView(etDim);
 
         Button btnNext = new Button(getContext());
+        Paris.styleBuilder(btnNext).add(R.style.custom_button_enabled).apply();
         btnNext.setText("Next");
         ll.addView(btnNext);
+
+
 
         matrixGrid = new GridLayout(getContext());
         matrixGrid.setRowCount(3); //default 3x3 matrix
         matrixGrid.setColumnCount(3);
-        ll.addView(matrixGrid);
+        HorizontalScrollView svMatrix = new HorizontalScrollView(getContext());
+        svMatrix.addView(matrixGrid);
+        ll.addView(svMatrix);
         matrixGrid.setVisibility(View.GONE);
 
         Button btnCalc = new Button(getContext());
-        btnCalc.setText("Calculate Eigenvalues and Eigenvectors");
+        Paris.styleBuilder(btnCalc).add(R.style.custom_button_enabled).apply();
+        btnCalc.setText("Calculate");
         ll.addView(btnCalc);
         btnCalc.setVisibility(View.GONE);
 
@@ -80,6 +92,24 @@ public class EigenDFragment extends Fragment {
                 EditText et = new EditText(getContext());
                 et.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_NUMBER_FLAG_SIGNED);
                 et.setHint("0");
+                Paris.styleBuilder(et).add(R.style.custom_edittext_mini).apply();
+
+
+                // Add a text watcher
+                et.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                        dynamicEtLength(s, et);
+                    }
+                });
+
                 matrixGrid.addView(et);
                 editTextList.add(et);
             }
@@ -90,6 +120,7 @@ public class EigenDFragment extends Fragment {
         });
 
         TextView tvRes = new TextView(getContext());
+        Paris.styleBuilder(tvRes).add(R.style.answer_textView).apply();
         ll.addView(tvRes);
         tvRes.setVisibility(View.GONE);
 
@@ -122,6 +153,7 @@ public class EigenDFragment extends Fragment {
             if (customKeyboard != null) {
                 customKeyboard.hideKeyboard();
                 setupEditTextForCustomKeyboard(customKeyboard, sv, editTextList);
+                setupEditTextChangeListener(viewsToDisappear, btnNext, customKeyboard, etDim);
                 setupEditTextChangeListener(viewsToDisappear, btnCalc, customKeyboard, editTextList);
             }
         });

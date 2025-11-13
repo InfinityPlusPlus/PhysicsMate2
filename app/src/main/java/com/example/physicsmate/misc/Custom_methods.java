@@ -6,11 +6,13 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.ScrollingMovementMethod;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -738,6 +740,28 @@ public class Custom_methods {
         return dividend - divisor * Math.floor(dividend / divisor);
     }
 
+    public static void dynamicEtLength(Editable s, EditText et) {
+        float density = Resources.getSystem().getDisplayMetrics().density;
+        float minWidthDp = 60f;
+        float minWidthPx = minWidthDp * density;
+
+        // Measure the text width using the paint used by the EditText
+        float textWidth = et.getPaint().measureText(s.toString());
+
+        // Add some padding for cursor and spacing
+        float totalWidth = textWidth + et.getPaddingLeft() + et.getPaddingRight() + 16 * density;
+
+        // Limit it to a reasonable max (optional)
+        float maxWidthPx = 300 * density;
+        if (totalWidth < minWidthPx) totalWidth = minWidthPx;
+        if (totalWidth > maxWidthPx) totalWidth = maxWidthPx;
+
+        // Apply the new width
+        ViewGroup.LayoutParams params = et.getLayoutParams();
+        params.width = (int) totalWidth;
+        et.setLayoutParams(params);
+    }
+
     public static void setupEditTextChangeListener(View[] viewsToDisappear, Button btnCalc, CustomKeyboard custom_keyboard, Iterable<EditText> editTexts) {
 
         // Check if any of the EditTexts are empty
@@ -776,6 +800,14 @@ public class Custom_methods {
 
                 @Override
                 public void afterTextChanged(Editable editable) {
+
+                    //check if the style of edittext = R.style.custom_edittext_mini
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        if(editText.getExplicitStyle()==R.style.custom_edittext_mini){
+                            dynamicEtLength(editable, editText);
+                        }
+                    }
+
                     for (View view : viewsToDisappear) {
                         view.setVisibility(View.GONE);
                     }

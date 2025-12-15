@@ -84,6 +84,7 @@ public class EigenDFragment extends Fragment {
             }
 
             matrixGrid.removeAllViews();
+            System.out.println("\n\ndim: " + dim);
             matrixGrid.setRowCount(dim);
             matrixGrid.setColumnCount(dim);
 

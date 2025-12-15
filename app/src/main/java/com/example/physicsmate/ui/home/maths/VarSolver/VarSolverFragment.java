@@ -97,8 +97,7 @@ public class VarSolverFragment extends Fragment {
     private void solveEquations() {
         int numOfEqns = rowsLinearLayout.getChildCount();
         Collection<String> eqns = new ArrayList<>();
-        eqns.add(et1.getText().toString());
-        for (int i = 1; i < numOfEqns; i++) {
+        for (int i = 0; i < numOfEqns; i++) {
             LinearLayout eqnRowItem = (LinearLayout) rowsLinearLayout.getChildAt(i);
             EditText et = (EditText) eqnRowItem.getChildAt(0);
             eqns.add(et.getText().toString());
@@ -116,6 +115,7 @@ public class VarSolverFragment extends Fragment {
         new Handler(Looper.getMainLooper()).post(() -> {
             try {
                 thread.join();
+                System.out.println("Result: " + resultParsed.get());
                 tvRes.setText(Html.fromHtml(resultParsed.get(), Html.FROM_HTML_MODE_LEGACY));
                 tvRes.setVisibility(View.VISIBLE);
                 sv.post(() -> sv.smoothScrollTo(0, tvRes.getBottom()));

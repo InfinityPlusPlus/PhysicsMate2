@@ -261,7 +261,6 @@ public class Custom_methods {
             return list;
 
         } else {
-            System.out.println("No intersection found.");
         }
 
         return null;
@@ -408,7 +407,6 @@ public class Custom_methods {
 
             //remove only the first and last bracket, not the in between brackets
             String vector = polarVector.substring(1, polarVector.length() - 1);
-            System.out.println(vector);
             String[] components = vector.split(",");
 
             // Ensure all vectors have the same dimension
@@ -445,7 +443,6 @@ public class Custom_methods {
         int n = polarComponents.length;
         double[] cartesian = new double[n];
 
-        System.out.println("\nr: " + polarComponents[0].trim() + "\n");
         double r = evalf(polarComponents[0].trim()); // Magnitude
         double[] angles = new double[n - 1];
         for (int i = 1; i < n; i++) {
@@ -469,12 +466,10 @@ public class Custom_methods {
 
         // Compute radius
         polar[0] = Math.sqrt(Arrays.stream(cartesian).map(x -> x * x).sum());
-        System.out.println("\n\n" + polar[0] + "\n\n");
 
         // Compute angles
         for (int i = 1; i < n; i++) {
             polar[i] = Math.toDegrees(Math.acos(cartesian[i - 1] / polar[0]));
-            System.out.println("\n\n" + polar[i] + "\n\n");
         }
 
         return polar;
@@ -653,7 +648,6 @@ public class Custom_methods {
 
         String expr = "(" + upperval + ")-(" + lowerval + ")";
 
-        System.out.println(eval("Simplify(" + expr + ")").toString());
         return eval("Simplify(" + expr + ")").toString();
 
         //String expanded = util.eval("Expand(" + expr + ")").toString();
@@ -938,7 +932,6 @@ public class Custom_methods {
 
                     custom_keyboard1.post(() -> {
                         if (!isFullyVisible(editText1)) {
-                            System.out.println("not fully visible");
                             scrollView.smoothScrollTo(0, editText1.getTop());
                         }
                     });
@@ -960,7 +953,6 @@ public class Custom_methods {
 
                     custom_keyboard1.post(() -> {
                         if (!isFullyVisible(editText1)) {
-                            System.out.println("not fully visible");
                             scrollView.smoothScrollTo(0, editText1.getTop());
                         }
                     });

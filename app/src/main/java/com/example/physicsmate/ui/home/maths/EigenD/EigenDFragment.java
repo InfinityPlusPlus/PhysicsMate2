@@ -84,7 +84,6 @@ public class EigenDFragment extends Fragment {
             }
 
             matrixGrid.removeAllViews();
-            System.out.println("\n\ndim: " + dim);
             matrixGrid.setRowCount(dim);
             matrixGrid.setColumnCount(dim);
 
@@ -137,8 +136,8 @@ public class EigenDFragment extends Fragment {
                 }
             }
 
-            double[] eigenvalues = eigenVals(matrix);
-            double[][] normalizedEigenVecs = normalizedEigenVecs(matrix);
+            String[] eigenvalues = eigenVals(matrix);
+            String[][] normalizedEigenVecs = normalizedEigenVecs(matrix);
 
             tvRes.setText(Html.fromHtml(HtmlNumberFormatter(requireContext(), "Eigenvalues:<br>" + Arrays.toString(eigenvalues) + "<br><br>Normalized Eigenvectors:<br>" + Arrays.deepToString(normalizedEigenVecs)), Html.FROM_HTML_MODE_LEGACY));
             tvRes.setVisibility(View.VISIBLE);

@@ -654,9 +654,9 @@ public class Custom_methods {
         //return util.eval("Simplify(ReplaceAll(" + expanded + ", {log(x_)+log(y_) -> log(x*y), log(x_)-log(y_) -> log(x/y), log(x_^y_) -> y*log(x_)}))").toString();
     }
 
-    public static double[] eigenVals(double[][] matrix) {
+    public static String[] eigenVals(double[][] matrix) {
         int n = matrix.length;
-        double[] eigenvalues = new double[n];
+        String[] eigenvalues = new String[n];
         ExprEvaluator util = new ExprEvaluator();
         StringBuilder matrixStr = new StringBuilder("{{");
         for (int i = 0; i < n; i++) {
@@ -674,15 +674,15 @@ public class Custom_methods {
 
         IExpr EigenVal = util.eval("Eigenvalues(" + matrixStr + ")");
         for (int i = 0; i < n; i++) {
-            eigenvalues[i] = util.evalf(EigenVal.getAt(i + 1).toString());
+            eigenvalues[i] = String.valueOf(EigenVal.getAt(i + 1));
         }
 
         return eigenvalues;
     }
 
-    public static double[][] eigenVecs(double[][] matrix) {
+    public static String[][] eigenVecs(double[][] matrix) {
         int n = matrix.length;
-        double[][] eigenvectors = new double[n][n];
+        String[][] eigenvectors = new String[n][n];
         ExprEvaluator util = new ExprEvaluator();
         StringBuilder matrixStr = new StringBuilder("{{");
         for (int i = 0; i < n; i++) {
@@ -702,7 +702,7 @@ public class Custom_methods {
         for (int i = 0; i < n; i++) {
             IExpr vec = EigenVec.getAt(i + 1);
             for (int j = 0; j < n; j++) {
-                eigenvectors[i][j] = util.evalf(vec.getAt(j + 1).toString());
+                eigenvectors[i][j] = String.valueOf(vec.getAt(j + 1));
             }
         }
 
@@ -710,20 +710,20 @@ public class Custom_methods {
     }
 
     //normalized eigenvectors
-    public static double[][] normalizedEigenVecs(double[][] matrix) {
-        double[][] eigenvectors = eigenVecs(matrix);
+    public static String[][] normalizedEigenVecs(double[][] matrix) {
+        String[][] eigenvectors = eigenVecs(matrix);
         int n = eigenvectors.length;
-
-        for (int i = 0; i < n; i++) {
-            double norm = 0.0;
+        ExprEvaluator util = new ExprEvaluator();
+        double norm;
+        for (String[] eigenvector : eigenvectors) {
+            String v = Arrays.toString(eigenvector).replaceAll("[\\[\\]]", "");
+            norm = util.evalf("Norm({" + v + "})");
             for (int j = 0; j < n; j++) {
-                norm += eigenvectors[i][j] * eigenvectors[i][j];
+                double component = util.evalf(String.valueOf(util.evalf(eigenvector[j]) / norm));
+                System.out.println(component);
+                eigenvector[j] = String.valueOf(component);
             }
-            norm = Math.sqrt(norm);
-
-            for (int j = 0; j < n; j++) {
-                eigenvectors[i][j] /= norm;
-            }
+            System.out.println(Arrays.toString(eigenvector));
         }
 
         return eigenvectors;

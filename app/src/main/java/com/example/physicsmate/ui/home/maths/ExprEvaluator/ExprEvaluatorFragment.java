@@ -1,25 +1,15 @@
 package com.example.physicsmate.ui.home.maths.ExprEvaluator;
 
-import android.annotation.SuppressLint;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextWatcher;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import com.agog.mathdisplay.MTMathView;
 import com.airbnb.paris.Paris;
 import com.example.physicsmate.R;
 import com.example.physicsmate.ui.CustomKeyboard;
@@ -28,9 +18,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
-import static androidx.core.content.ContextCompat.getSystemService;
 import static com.example.physicsmate.misc.Custom_methods.*;
 import static com.example.physicsmate.misc.MainActivity.getKeyboard;
 import static com.example.physicsmate.misc.MainActivity.setLinkedScrollView;
@@ -156,7 +144,6 @@ public class ExprEvaluatorFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 getVars();
-                System.out.println("\n\nTCL: " + vars + "\n\n");
                 tvFn.setText("Enter the function f(" + vars + ")");
             }
         });

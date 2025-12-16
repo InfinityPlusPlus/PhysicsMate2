@@ -43,6 +43,9 @@ public class EigenDFragment extends Fragment {
         sv = view.findViewById(R.id.scrollView);
         ll = view.findViewById(R.id.linearLayout);
 
+        ll.setGravity(Gravity.CENTER);
+        ll.setForegroundGravity(Gravity.CENTER);
+
         TextView tv = new TextView(getContext());
         Paris.styleBuilder(tv).add(R.style.custom_textView).apply();
         tv.setText("Enter the dimension of the square matrix");
@@ -83,16 +86,19 @@ public class EigenDFragment extends Fragment {
 
         View[] viewsToDisappear = {tvRes};
 
+        HorizontalScrollView hsvText = new HorizontalScrollView(getContext());
+        ll.addView(hsvText);
         MTMathView mtMathView = new MTMathView(getContext());
-        ll.addView(mtMathView);
+        hsvText.addView(mtMathView);
+
         mtMathView.setFontSize(60f);
         mtMathView.setTextColor(Color.WHITE);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
-        params.setMargins(20, 30, 20, 40);
-        mtMathView.setLayoutParams(params);
+        params.setMargins(40, 40, 40, 60);
+        hsvText.setLayoutParams(params);
         mtMathView.setVisibility(View.GONE);
 
         view.post(() -> {
@@ -176,7 +182,8 @@ public class EigenDFragment extends Fragment {
 
             String strEigenVecsLatex = Arrays.deepToString(eigenVecs);
             strEigenVecsLatex = strEigenVecsLatex.replace("[[", "\\begin{bmatrix} ").replace("]]", " \\end{bmatrix}").replace("], [", " \\\\\n ").replace("[", "").replace("]", "").replace(", ", " & ");
-            mtMathView.setLatex(strEigenVecsLatex + "^ T");
+            strEigenVecsLatex = strEigenVecsLatex.replaceAll("([()])" , "$1");
+            mtMathView.setLatex(strEigenVecsLatex + "^T");
             /*mtMathView.setLatex("\\begin{bmatrix}\n" +
                     "    x_{11} & x_{12} & x_{13} & \\ldots  & x_{1n} \\\\\n" +
                     "    x_{21} & x_{22} & x_{23} & \\ldots  & x_{2n} \\\\\n" +

@@ -1,10 +1,12 @@
 package com.example.physicsmate.ui.home.maths.EigenD;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import com.agog.mathdisplay.MTMathView;
 import com.airbnb.paris.Paris;
 import com.example.physicsmate.R;
 import com.example.physicsmate.ui.CustomKeyboard;
@@ -56,11 +59,10 @@ public class EigenDFragment extends Fragment {
         btnNext.setText("Next");
         ll.addView(btnNext);
 
-
-
         matrixGrid = new GridLayout(getContext());
         matrixGrid.setRowCount(3); //default 3x3 matrix
         matrixGrid.setColumnCount(3);
+        matrixGrid.setForegroundGravity(Gravity.CENTER);
         HorizontalScrollView svMatrix = new HorizontalScrollView(getContext());
         svMatrix.addView(matrixGrid);
         ll.addView(svMatrix);
@@ -73,6 +75,37 @@ public class EigenDFragment extends Fragment {
         btnCalc.setVisibility(View.GONE);
 
         List<EditText> editTextList = new ArrayList<>();
+
+        TextView tvRes = new TextView(getContext());
+        Paris.styleBuilder(tvRes).add(R.style.answer_textView).apply();
+        ll.addView(tvRes);
+        tvRes.setVisibility(View.GONE);
+
+        View[] viewsToDisappear = {tvRes};
+
+        MTMathView mtMathView = new MTMathView(getContext());
+        ll.addView(mtMathView);
+        mtMathView.setFontSize(60f);
+        mtMathView.setTextColor(Color.WHITE);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        params.setMargins(20, 30, 20, 40);
+        mtMathView.setLayoutParams(params);
+        mtMathView.setVisibility(View.GONE);
+
+        view.post(() -> {
+            customKeyboard = getKeyboard();
+            if (customKeyboard != null) {
+                customKeyboard.hideKeyboard();
+                setupEditTextForCustomKeyboard(customKeyboard, sv, editTextList);
+                setupEditTextChangeListener(viewsToDisappear, btnNext, customKeyboard, etDim);
+                setupEditTextChangeListener(viewsToDisappear, btnCalc, customKeyboard, editTextList);
+            }
+        });
+
+        setLinkedScrollView(sv);
 
         btnNext.setOnClickListener(view ->
         {
@@ -114,15 +147,14 @@ public class EigenDFragment extends Fragment {
                 editTextList.add(et);
             }
 
+            setupEditTextForCustomKeyboard(customKeyboard, sv, editTextList);
+            setupEditTextChangeListener(viewsToDisappear, btnNext, customKeyboard, etDim);
+            setupEditTextChangeListener(viewsToDisappear, btnCalc, customKeyboard, editTextList);
+
             matrixGrid.setVisibility(View.VISIBLE);
             btnCalc.setVisibility(View.VISIBLE);
 
         });
-
-        TextView tvRes = new TextView(getContext());
-        Paris.styleBuilder(tvRes).add(R.style.answer_textView).apply();
-        ll.addView(tvRes);
-        tvRes.setVisibility(View.GONE);
 
         btnCalc.setOnClickListener(v -> {
             customKeyboard.hideKeyboard();
@@ -137,28 +169,25 @@ public class EigenDFragment extends Fragment {
             }
 
             String[] eigenvalues = eigenVals(matrix);
-            String[][] normalizedEigenVecs = normalizedEigenVecs(matrix);
+            String[][] eigenVecs = eigenVecs(matrix);
 
-            tvRes.setText(Html.fromHtml(HtmlNumberFormatter(requireContext(), "Eigenvalues:<br>" + Arrays.toString(eigenvalues) + "<br><br>Normalized Eigenvectors:<br>" + Arrays.deepToString(normalizedEigenVecs)), Html.FROM_HTML_MODE_LEGACY));
+            tvRes.setText(Html.fromHtml(HtmlNumberFormatter(requireContext(), "Eigenvalues:<br>" + Arrays.toString(eigenvalues) + "<br><br>Eigenvectors:<br>" + Arrays.deepToString(eigenVecs)), Html.FROM_HTML_MODE_LEGACY));
             tvRes.setVisibility(View.VISIBLE);
+
+            String strEigenVecsLatex = Arrays.deepToString(eigenVecs);
+            strEigenVecsLatex = strEigenVecsLatex.replace("[[", "\\begin{bmatrix} ").replace("]]", " \\end{bmatrix}").replace("], [", " \\\\\n ").replace("[", "").replace("]", "").replace(", ", " & ");
+            mtMathView.setLatex(strEigenVecsLatex + "^ T");
+            /*mtMathView.setLatex("\\begin{bmatrix}\n" +
+                    "    x_{11} & x_{12} & x_{13} & \\ldots  & x_{1n} \\\\\n" +
+                    "    x_{21} & x_{22} & x_{23} & \\ldots  & x_{2n} \\\\\n" +
+                    "    \\vdots & \\vdots & \\vdots & \\ddots & \\vdots \\\\\n" +
+                    "    x_{d1} & x_{d2} & x_{d3} & \\ldots  & x_{dn}\n" +
+                    "\\end{bmatrix}");*/
+
+            System.out.println(getTex(Arrays.deepToString(eigenVecs), mtMathView));
+            mtMathView.setVisibility(View.VISIBLE);
             sv.post(() -> sv.smoothScrollTo(0, tvRes.getBottom()));
         });
-
-
-
-        View[] viewsToDisappear = {matrixGrid, btnCalc, tvRes};
-
-        view.post(() -> {
-            customKeyboard = getKeyboard();
-            if (customKeyboard != null) {
-                customKeyboard.hideKeyboard();
-                setupEditTextForCustomKeyboard(customKeyboard, sv, editTextList);
-                setupEditTextChangeListener(viewsToDisappear, btnNext, customKeyboard, etDim);
-                setupEditTextChangeListener(viewsToDisappear, btnCalc, customKeyboard, editTextList);
-            }
-        });
-
-        setLinkedScrollView(sv);
 
         return view;
 

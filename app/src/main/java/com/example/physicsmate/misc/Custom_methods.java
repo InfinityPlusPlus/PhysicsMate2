@@ -591,6 +591,21 @@ public class Custom_methods {
         return input;
     }
 
+    //a method, when given a string, makes the number, comma and brackets in yellow color, and the text in blue
+    public static String HtmlComplexNumberFormatter(Context context, String input) {
+        // Retrieve the color from colors.xml
+        int color = ContextCompat.getColor(context, R.color.yellow_num_answer);
+        // Convert color to hex string
+        String hexColor = String.format("#%06X", (0xFFFFFF & color));
+
+        // Replace numbers (including decimals) with formatted color
+        input = input.replaceAll("(?<![a-zA-Z_])(-?\\d*\\.?\\d+([eE][-+]?\\d+)?)", "<font color='" + hexColor + "'>$1</font>");
+
+        //also color the 'I' in complex numbers along with operators *, + and -
+        input = input.replaceAll("([+\\-*/I])", "<font color='" + hexColor + "'>$1</font>");
+        return input;
+    }
+
     //a method, when given a string, makes it surrounded by yellow color
     public static String HtmlColoriser(Context context, String input) {
         // Retrieve the color from resources
@@ -720,10 +735,8 @@ public class Custom_methods {
             norm = util.evalf("Norm({" + v + "})");
             for (int j = 0; j < n; j++) {
                 double component = util.evalf(String.valueOf(util.evalf(eigenvector[j]) / norm));
-                System.out.println(component);
                 eigenvector[j] = String.valueOf(component);
             }
-            System.out.println(Arrays.toString(eigenvector));
         }
 
         return eigenvectors;
@@ -1497,6 +1510,7 @@ public class Custom_methods {
                 texUtil.toTeX(IExprConverter(function), stw);
                 stw_string = stw.toString();
                 stw_string = stw_string.replaceAll("([a-zA-Z])(\\d+)", "$1_{$2}");
+                stw_string = stw_string.replaceAll("([()])", "$1");
             }
 
             mathView.setFontSize(fontSize);

@@ -669,8 +669,7 @@ public class Custom_methods {
         //return util.eval("Simplify(ReplaceAll(" + expanded + ", {log(x_)+log(y_) -> log(x*y), log(x_)-log(y_) -> log(x/y), log(x_^y_) -> y*log(x_)}))").toString();
     }
 
-    public static String[] eigenVals(double[][] matrix) {
-        int n = matrix.length;
+    public static String[] eigenVals(double[][] matrix, int n) {
         String[] eigenvalues = new String[n];
         ExprEvaluator util = new ExprEvaluator();
         StringBuilder matrixStr = new StringBuilder("{{");
@@ -695,8 +694,7 @@ public class Custom_methods {
         return eigenvalues;
     }
 
-    public static String[][] eigenVecs(double[][] matrix) {
-        int n = matrix.length;
+    public static String[][] eigenVecs(double[][] matrix, int n) {
         String[][] eigenvectors = new String[n][n];
         ExprEvaluator util = new ExprEvaluator();
         StringBuilder matrixStr = new StringBuilder("{{");
@@ -723,25 +721,6 @@ public class Custom_methods {
 
         return eigenvectors;
     }
-
-    //normalized eigenvectors
-    public static String[][] normalizedEigenVecs(double[][] matrix) {
-        String[][] eigenvectors = eigenVecs(matrix);
-        int n = eigenvectors.length;
-        ExprEvaluator util = new ExprEvaluator();
-        double norm;
-        for (String[] eigenvector : eigenvectors) {
-            String v = Arrays.toString(eigenvector).replaceAll("[\\[\\]]", "");
-            norm = util.evalf("Norm({" + v + "})");
-            for (int j = 0; j < n; j++) {
-                double component = util.evalf(String.valueOf(util.evalf(eigenvector[j]) / norm));
-                eigenvector[j] = String.valueOf(component);
-            }
-        }
-
-        return eigenvectors;
-    }
-
 
     public static double mod(double dividend, double divisor) {
         return dividend - divisor * Math.floor(dividend / divisor);

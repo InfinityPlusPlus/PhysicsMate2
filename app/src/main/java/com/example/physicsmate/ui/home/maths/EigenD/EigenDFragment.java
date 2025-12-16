@@ -174,8 +174,8 @@ public class EigenDFragment extends Fragment {
                 }
             }
 
-            String[] eigenvalues = eigenVals(matrix);
-            String[][] eigenVecs = eigenVecs(matrix);
+            String[] eigenvalues = eigenVals(matrix, dim);
+            String[][] eigenVecs = eigenVecs(matrix, dim);
 
             tvRes.setText(Html.fromHtml(HtmlNumberFormatter(requireContext(), "Eigenvalues:<br>" + Arrays.toString(eigenvalues) + "<br><br>Eigenvectors:<br>" + Arrays.deepToString(eigenVecs)), Html.FROM_HTML_MODE_LEGACY));
             tvRes.setVisibility(View.VISIBLE);
